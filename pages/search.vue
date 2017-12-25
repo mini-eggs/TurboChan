@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <board-search :boards="$store.state.boards.list"/>
-  </div>
+  <search/>
 </template>
 
 <script>
-import BoardSearch from "@/components/board-search";
+import Search from "@/scenes/search";
 
 export default {
   components: {
-    BoardSearch
+    Search
   },
 
   async fetch({ store }) {

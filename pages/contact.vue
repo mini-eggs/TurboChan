@@ -1,20 +1,8 @@
 <template>
-  <div>
-    <section>
-      <h1>Contact</h1>
-    </section>
-  </div>
+  <placeholder name="Contact"/>
 </template>
 
-<style scoped>
-section {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
+<script>
+import Placeholder from "@/scenes/placeholder";
+export default { components: { Placeholder } };
+</script>

@@ -19,7 +19,7 @@ let layouts = {
 let resolvedLayouts = {}
 
 export default {
-  head: {"title":"Turbo Chan","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"}],"style":[],"script":[]},
+  head: {"title":"Turbo Chan","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css?family=Roboto"}],"style":[],"script":[]},
   data: () => ({
     layout: null,
     layoutName: ''

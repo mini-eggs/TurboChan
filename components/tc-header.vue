@@ -5,7 +5,7 @@
         <transition name="up-and-out">
           <nuxt-link to="/" v-if="displayBrand" class="brand">
             <img src="../assets/logo_white.png" />
-            <span>TurboChan</span>
+            <span>Turbo Chan</span>
           </nuxt-link>
         </transition>
         <nav>

@@ -194,7 +194,10 @@ module.exports = {
       name: "viewport",
       content: "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
     }],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }, {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css?family=Roboto"
+    }]
   },
   loading: { color: "transparent" }
 };

@@ -11,7 +11,7 @@ export default {
   },
 
   async fetch({ store, params }) {
-    await store.dispatch("threads/request", { page: 1, ...params });
+    await store.dispatch("threads/request", params);
   },
 
   head() {

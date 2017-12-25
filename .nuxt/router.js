@@ -9,6 +9,7 @@ const _54c6bbf3 = () => import('../pages/contact.vue' /* webpackChunkName: "page
 const _0cdf4fa0 = () => import('../pages/about.vue' /* webpackChunkName: "pages/about" */).then(m => m.default || m)
 const _37a15be7 = () => import('../pages/_board/index.vue' /* webpackChunkName: "pages/_board/index" */).then(m => m.default || m)
 const _ab486042 = () => import('../pages/_board/thread/_thread.vue' /* webpackChunkName: "pages/_board/thread/_thread" */).then(m => m.default || m)
+const _bf3abefa = () => import('../pages/_board/_page.vue' /* webpackChunkName: "pages/_board/_page" */).then(m => m.default || m)
 
 
 
@@ -73,6 +74,11 @@ export function createRouter () {
 			path: "/:board/thread/:thread?",
 			component: _ab486042,
 			name: "board-thread-thread"
+		},
+		{
+			path: "/:board/:page",
+			component: _bf3abefa,
+			name: "board-page"
 		}
     ],
     fallback: false

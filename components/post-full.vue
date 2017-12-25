@@ -91,6 +91,8 @@ export default {
   color: white;
   text-decoration: none;
   margin-right: 15px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .actions a span {
@@ -99,6 +101,5 @@ export default {
 
 .actions a.reply {
   margin: 0;
-  font-weight: bold;
 }
 </style>

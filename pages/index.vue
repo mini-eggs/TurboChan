@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <board-intro :item="item" v-for="item in $store.state.boards.list" :key="item.board"/>
-  </div>
+  <BoardsScene/>
 </template>
 
 <script>
-import BoardIntro from "@/components/board-intro";
+import BoardsScene from "@/scenes/boards";
 
 export default {
   components: {
-    BoardIntro
+    BoardsScene
   },
 
   async fetch({ store }) {

@@ -16,7 +16,7 @@ export default { components: { TcHeader } };
 <style>
 html,
 body {
-  font-family: sans-serif;
+  font-family: Roboto, sans-serif;
   margin: 0;
   background-color: #343442;
   color: white;
