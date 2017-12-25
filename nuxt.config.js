@@ -95,10 +95,10 @@ module.exports = {
         href: "/android-icon-192x192.png"
       },
       { rel: "manifest", href: "/manifest.json" },
-      // {
-      //   rel: "apple-touch-startup-image",
-      //   href: "/splash.png"
-      // },
+      {
+        rel: "apple-touch-startup-image",
+        href: "/splash.png"
+      },
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         rel: "stylesheet",

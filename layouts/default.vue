@@ -23,7 +23,7 @@ body {
 }
 
 /* splash screen pwa fix for ios */
-.splash:before,
+/* .splash:before,
 .splash:after {
   content: " ";
   position: fixed;
@@ -89,7 +89,7 @@ body {
     top: -999999px;
     left: -999999px;
   }
-}
+} */
 
 /* status bar pwa fix for ios */
 body:before {
