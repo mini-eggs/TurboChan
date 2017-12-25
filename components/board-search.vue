@@ -19,7 +19,7 @@ export default {
     handleSubmit() {
       const first = this.$store.getters.filterdBoards.shift();
       if (first) {
-        window.location = `/${first.board}`;
+        this.$router.push({ path: `/${first.board}` });
       }
     }
   }
