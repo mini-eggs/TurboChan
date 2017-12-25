@@ -42,6 +42,7 @@ export default {
       this.$el.parentElement.style.height = `${this.item.h / ratio}px`;
       this.mode = "large";
     },
+
     makeSmall() {
       if (this.alwaysLarge && this.isImage) return;
       this.$el.parentElement.style.width = "";

@@ -8,6 +8,17 @@ module.exports = {
         content:
           "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
       },
+      { name: "apple-mobile-web-app-title", content: "Turbo Chan" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      {
+        name: "apple-mobile-web-app-status-bar-style",
+        content: "black-translucent"
+      },
+      { name: "msapplication-TileColor", content: "#343442" },
+      { name: "msapplication-TileImage", content: "/ms-icon-144x144.png" },
+      { name: "theme-color", content: "#343442" }
+    ],
+    link: [
       {
         rel: "apple-touch-icon",
         sizes: "57x57",
@@ -84,11 +95,6 @@ module.exports = {
         href: "/android-icon-192x192.png"
       },
       { rel: "manifest", href: "/manifest.json" },
-      { name: "msapplication-TileColor", content: "#343442" },
-      { name: "msapplication-TileImage", content: "/ms-icon-144x144.png" },
-      { name: "theme-color", content: "#343442" },
-      { name: "apple-mobile-web-app-capable", content: "yes" },
-      { name: "apple-mobile-web-app-title", content: "Turbo Chan" },
       {
         rel: "apple-touch-startup-image",
         href: "/android-icon-192x192.png",
@@ -99,12 +105,6 @@ module.exports = {
         href: "/android-icon-192x192.png",
         media: "(device-height:568px)"
       },
-      {
-        name: "apple-mobile-web-app-status-bar-style",
-        content: "black-translucent"
-      }
-    ],
-    link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         rel: "stylesheet",

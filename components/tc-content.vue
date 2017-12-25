@@ -26,18 +26,22 @@ export default {
 
   methods: {
     handleClick(event) {
-      event.stopPropagation();
-      event.preventDefault();
       if (event.target.href.indexOf("#p") !== -1) {
+        event.stopPropagation();
+        event.preventDefault();
         this.handleQuoteClick(event.target.href.split("#p").pop());
       }
     },
 
     handleQuoteClick(id) {
-      console.log(id);
-      const el = document.getElementById(id);
-      const pos = el.parentElement.parentElement.offsetTop - 75;
-      window.scrollTo(0, pos);
+      if (this.$route.name === "board-thread-thread") {
+        const el = document.getElementById(id);
+        const pos = el.parentElement.parentElement.offsetTop - 75;
+        window.scrollTo(0, pos);
+      } else {
+        const { board, thread } = this.item;
+        this.$router.push({ path: `/${board}/thread/${thread}` });
+      }
     }
   }
 };

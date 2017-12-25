@@ -1,10 +1,14 @@
 <template>
   <div>
     <thread-preview v-for="item in $store.state.threads.list" :key="item.posts[0].no" :thread="item"/>
-    <section v-if="$store.state.threads.list.length > 0">
-      <nuxt-link v-if="page > 1" tag="button" :to="link(-1)"  class="prev">PREV</nuxt-link>
-      <nuxt-link v-if="page < 10" tag="button" :to="link(1)" class="next">NEXT</nuxt-link>
-    </section>
+    <div class="pagination" v-if="$store.state.threads.list.length > 0">
+      <nuxt-link v-if="page > 1" tag="button" :to="link(-1)"  class="prev">
+        <img src="../assets/ic_arrow_back_white_24px.svg" />
+      </nuxt-link>
+      <nuxt-link v-if="page < 10" tag="button" :to="link(1)" class="next">
+        <img src="../assets/ic_arrow_forward_white_24px.svg" />        
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -31,19 +35,23 @@ export default {
 </script>
 
 <style scoped>
-section {
-  padding: 50px 0 30px;
+.pagination {
+  padding: 50px 0;
+  margin: 0 -10px;
 }
 
 .prev,
 .next {
   cursor: pointer;
   border: none;
-  color: white;
-  font-weight: bold;
-  padding: 7.5px 15px;
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: transparent;
+  width: 20%;
+}
+
+.prev img,
+.next img {
+  width: 100%;
+  max-width: 30px;
 }
 
 .prev {
