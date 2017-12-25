@@ -22,6 +22,10 @@ export default {
         this.$router.push({ path: `/${first.board}` });
       }
     }
+  },
+
+  destroyed() {
+    this.$store.dispatch("user/updateInput", { target: { value: "" } });
   }
 };
 </script>

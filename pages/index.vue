@@ -13,7 +13,9 @@ export default {
   },
 
   async fetch({ store }) {
-    await store.dispatch("boards/request");
+    if (store.state.boards.list.length < 1) {
+      await store.dispatch("boards/request");
+    }
   }
 };
 </script>

@@ -11,6 +11,7 @@ export default {
 
   actions: {
     async request({ commit }, { board, page }) {
+      commit("received", { threads: [] });
       commit("received", await Request(`/${board}/${page}`));
     }
   }
