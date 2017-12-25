@@ -1,28 +1,33 @@
 <template>
-  <section class="header-container">
-    <div class="header-shadow">
-      <header>
-        <transition name="up-and-out">
-          <nuxt-link to="/" v-if="displayBrand" class="brand">
-            <img src="../assets/logo_white.png" />
-            <span>Turbo Chan</span>
-          </nuxt-link>
-        </transition>
-        <nav>
-          <nuxt-link to="/">
-            <img src="../assets/ic_home_white_24px.svg"/>
-          </nuxt-link>
-          <nuxt-link to="/search">
-            <img src="../assets/ic_search_white_24px.svg"/>
-          </nuxt-link>
-          <nuxt-link to="/contact">
-            <img src="../assets/ic_mail_white_24px.svg"/>
-          </nuxt-link>
-          <nuxt-link to="/about">
-            <img src="../assets/ic_settings_white_24px.svg"/>
-          </nuxt-link>
-        </nav>
-      </header>
+  <section>
+    <div class="header-container">
+      <div class="header-shadow">
+        <header>
+          <transition name="up-and-out">
+            <nuxt-link to="/" v-if="displayBrand" class="brand">
+              <img src="../assets/logo_white.png" />
+              <span>Turbo Chan</span>
+            </nuxt-link>
+          </transition>
+          <nav>
+            <a @click.stop.prevent="$router.go(-1)">
+              <img src="../assets/ic_arrow_back_white_24px.svg"/>
+            </a>
+            <nuxt-link to="/search">
+              <img src="../assets/ic_search_white_24px.svg"/>
+            </nuxt-link>
+            <nuxt-link to="/">
+              <img src="../assets/ic_home_white_24px.svg"/>
+            </nuxt-link>
+            <nuxt-link to="/contact">
+              <img src="../assets/ic_mail_white_24px.svg"/>
+            </nuxt-link>
+            <nuxt-link to="/about">
+              <img src="../assets/ic_settings_white_24px.svg"/>
+            </nuxt-link>
+          </nav>
+        </header>
+      </div>
     </div>
   </section>
 </template>
@@ -48,9 +53,14 @@ export default {
 </script>
 
 <style>
-section.header-container {
-  min-height: 116.72px;
-  position: sticky;
+section {
+  min-height: 115.72px;
+}
+
+.header-container {
+  position: fixed;
+  width: 100%;
+  left: 0;
   top: 0;
   z-index: 10;
 }
@@ -86,8 +96,8 @@ header .brand {
   font-size: 22px;
   display: flex;
   align-items: center;
-  margin-right: calc(100% / 8 - 15px);
-  margin-left: calc(100% / 8 - 15px);
+  margin-right: calc(100% / 10 - 15px);
+  margin-left: calc(100% / 10 - 15px);
 }
 
 header .brand img {
@@ -101,6 +111,7 @@ header nav {
 }
 
 header nav a {
+  cursor: pointer;
   text-align: center;
   width: 25%;
   display: block;

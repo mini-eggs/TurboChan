@@ -1,7 +1,7 @@
 <template>
   <div>
-    <form @submit.prevent.stop="handleSubmit">
-      <input autofocus type="text" placeholder="Try 'tech'" @input="$store.dispatch('user/updateInput', $event)" />
+    <form action="/search" @submit.prevent.stop="handleSubmit">
+      <input autofocus type="text" placeholder="Try 'tech'" name="board" @input="$store.dispatch('user/updateInput', $event)" />
     </form>
     <board-intro :item="item" v-for="item in $store.getters.filterdBoards" :key="item.board"/>
   </div>

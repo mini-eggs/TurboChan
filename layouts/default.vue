@@ -22,6 +22,18 @@ body {
   color: white;
 }
 
+/* status bar pwa fix for ios */
+body:before {
+  content: " ";
+  position: fixed;
+  top: -25px;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  background-color: #343442;
+  z-index: 100;
+}
+
 * {
   margin: 0;
   padding: 0;

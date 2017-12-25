@@ -1,17 +1,13 @@
 <template>
-  <div>
-    <div class="post-container" v-for="item in $store.state.posts.list" :key="item.no">
-      <post-full :hideActions="true" :post="item"/>
-    </div>
-  </div>
+  <posts-scene/>
 </template>
 
 <script>
-import PostFull from "@/components/post-full";
+import PostsScene from "@/scenes/posts";
 
 export default {
   components: {
-    PostFull
+    PostsScene
   },
 
   async fetch({ store, params }) {
@@ -25,9 +21,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.post-container {
-  margin-top: 15px;
-}
-</style>

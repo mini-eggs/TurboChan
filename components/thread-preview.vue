@@ -20,13 +20,13 @@ export default {
 
   props: ["thread"],
 
-  data() {
-    const next = [...this.thread.posts];
-
-    return {
-      first: next.shift(),
-      rest: next
-    };
+  computed: {
+    first() {
+      return [...this.thread.posts].shift();
+    },
+    rest() {
+      return [...this.thread.posts].slice(1);
+    }
   }
 };
 </script>
