@@ -260,12 +260,7 @@ module.exports = {
       href: "/android-icon-192x192.png"
     }, { rel: "manifest", href: "/manifest.json" }, {
       rel: "apple-touch-startup-image",
-      href: "/android-icon-192x192.png",
-      media: "(device-height:480px)"
-    }, {
-      rel: "apple-touch-startup-image",
-      href: "/android-icon-192x192.png",
-      media: "(device-height:568px)"
+      href: "/splash.png"
     }, { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }, {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css?family=Roboto"
