@@ -5,14 +5,13 @@ export const modules = {
   user: import("./user")
 };
 
+const filterWithInput = i => ({ board, title }) =>
+  board.toLowerCase().indexOf(i.toLowerCase()) !== -1 ||
+  title.toLowerCase().indexOf(i.toLowerCase()) !== -1;
+
 export const getters = {
-  filterdBoards(state) {
-    const input = state.user.input.toLowerCase();
-    if (input === "") return [];
-    return state.boards.list.filter(
-      ({ board, title }) =>
-        board.toLowerCase().indexOf(input) !== -1 ||
-        title.toLowerCase().indexOf(input) !== -1
-    );
-  }
+  filterdBoards: state =>
+    state.user.input === ""
+      ? []
+      : state.boards.list.filter(filterWithInput(state.user.input))
 };

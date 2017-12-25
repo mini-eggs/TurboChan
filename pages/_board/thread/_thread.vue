@@ -10,14 +10,13 @@ export default {
     PostsScene
   },
 
-  async fetch({ store, params }) {
-    await store.dispatch("posts/request", params);
+  async mounted() {
+    await this.$store.dispatch("posts/request", this.$route.params);
   },
 
   head() {
-    const threadTitle =
-      this.$store.state.posts.list[0].sub || this.$route.params.thread;
-    return { title: `${threadTitle} - TurboChan` };
+    const { board, thread } = this.$route.params;
+    return { title: `/${board}/ - ${thread} - TurboChan` };
   }
 };
 </script>

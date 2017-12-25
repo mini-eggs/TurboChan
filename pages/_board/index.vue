@@ -10,8 +10,9 @@ export default {
     ThreadsScene
   },
 
-  async fetch({ store, params }) {
-    await store.dispatch("threads/request", { page: 1, ...params });
+  async mounted() {
+    const params = { page: 1, ...this.$route.params };
+    await this.$store.dispatch("threads/request", params);
   },
 
   head() {

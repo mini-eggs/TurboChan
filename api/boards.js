@@ -1,10 +1,11 @@
 import { Router } from "express";
-import Request from "../constants/request";
+import Axios from "axios";
 
 const router = Router();
 
 router.get("/boards", async (_, res) => {
-  res.json(await Request("/boards"));
+  const next_res = await Axios("https://a.4cdn.org/boards.json");
+  res.json(next_res.data);
 });
 
 export default router;

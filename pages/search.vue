@@ -10,9 +10,9 @@ export default {
     Search
   },
 
-  async fetch({ store }) {
-    if (store.state.boards.list.length < 1) {
-      await store.dispatch("boards/request");
+  async mounted() {
+    if (this.$store.state.boards.list.length < 1) {
+      await this.$store.dispatch("boards/request");
     }
   }
 };

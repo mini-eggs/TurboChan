@@ -1,5 +1,5 @@
 <template>
-  <thread-preview :thread="{ posts: $store.state.posts.list }" />
+  <thread-preview :hideFirstActions="true" :thread="{ posts: $store.state.posts.list }" />
 </template>
 
 <script>

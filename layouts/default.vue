@@ -20,6 +20,7 @@ body {
   margin: 0;
   background-color: #343442;
   color: white;
+  min-height: calc(100vh + 1px);
 }
 
 /* splash screen pwa fix for ios */
@@ -110,8 +111,8 @@ body:before {
 
 .page-container {
   max-width: 600px;
-  padding: 0 10px;
-  margin: 0 auto 15px;
+  padding: 0 10px 15px;
+  margin: 0 auto;
 }
 
 input {

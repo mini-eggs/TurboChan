@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <post-full :post="first"/>
+  <div class="container" v-if="thread.posts.length > 0">
+    <post-full :hideActions="hideFirstActions" :post="first"/>
     <div v-for="(item, index) in rest" :key="item.no">
       <hr v-if="index !== 0"/>
       <post-compact :post="item"/>
@@ -18,7 +18,7 @@ export default {
     PostCompact
   },
 
-  props: ["thread"],
+  props: ["thread", "hideFirstActions"],
 
   computed: {
     first() {

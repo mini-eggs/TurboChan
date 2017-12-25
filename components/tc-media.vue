@@ -13,14 +13,16 @@
 </template>
 
 <script>
+import { API_BASE } from "@/constants/";
+
 export default {
   props: ["item", "alwaysLarge"],
 
   data() {
     const board = this.$route.params.board;
     const { w, h, tn_w, tn_h, tim, ext } = this.item;
-    const large = `/api/media/${board}/${tim}${ext}`;
-    const small = `/api/media/${board}/${tim}s.jpg`;
+    const large = `${API_BASE}/api/media/${board}/${tim}${ext}`;
+    const small = `${API_BASE}/api/media/${board}/${tim}s.jpg`;
     const isImage = [".gif", ".jpg", ".jpeg", ".png"].includes(ext);
 
     return {

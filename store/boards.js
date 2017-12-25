@@ -1,4 +1,5 @@
-import Request from "../constants/request";
+import Axios from "axios";
+import { API_BASE } from "@/constants/";
 
 export default {
   state: () => ({ list: [] }),
@@ -11,7 +12,8 @@ export default {
 
   actions: {
     async request({ commit }) {
-      commit("received", await Request("/boards"));
+      const res = await Axios(`${API_BASE}/api/boards`);
+      commit("received", res.data);
     }
   }
 };

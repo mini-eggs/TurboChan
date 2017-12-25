@@ -30,6 +30,10 @@ export default {
     link(dir) {
       return `/${this.$route.params.board}/${this.page + dir}`;
     }
+  },
+
+  mounted() {
+    window.scrollTo(0, 0);
   }
 };
 </script>

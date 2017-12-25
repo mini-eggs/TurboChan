@@ -8,7 +8,7 @@ export default {
 
   computed: {
     desc() {
-      return (this.item.com || "").split("<br><br>").join("");
+      return (this.item.com || "").split("<br><br>").join("<br>");
     }
   },
 
