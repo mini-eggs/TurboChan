@@ -12,6 +12,7 @@ export default {
 
   actions: {
     async request({ commit }, { board, thread }) {
+      commit("received", { posts: [] });
       const res = await Axios(`${API_BASE}/api/${board}/thread/${thread}`);
       commit("received", res.data);
     }

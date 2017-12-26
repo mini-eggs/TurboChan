@@ -1,12 +1,10 @@
 <template>
   <div class="media-container">
     <div @click="makeLarge" v-if="mode === 'small'" :class="{ 'play': !isImage }">
-      <img :src="small"/>
+      <tc-image :src="small"/>
     </div>
     <div @click="makeSmall" v-else>
-      <div v-if="isImage" class="background" :style="{ backgroundImage: `url(${small})` }">
-        <img :src="large"/>
-      </div>
+      <tc-image v-if="isImage" :src="large" />
       <video v-else autoplay loop :src="large"/>
     </div>
   </div>
@@ -14,9 +12,11 @@
 
 <script>
 import { API_BASE } from "@/constants/";
+import TcImage from "@/components/tc-image";
 
 export default {
   props: ["item", "alwaysLarge"],
+  components: { TcImage },
 
   data() {
     const board = this.$route.params.board;
@@ -36,20 +36,18 @@ export default {
 
   methods: {
     makeLarge() {
-      if (this.alwaysLarge && this.isImage) return;
-      const container = this.$el.parentElement.parentElement.offsetWidth - 10;
-      const original = this.item.w;
-      const ratio = original / container;
-      this.$el.parentElement.style.width = "100%";
-      this.$el.parentElement.style.height = `${this.item.h / ratio}px`;
-      this.mode = "large";
+      if (!(this.alwaysLarge && this.isImage)) {
+        const container = this.$el.parentElement.parentElement.offsetWidth - 10;
+        this.$el.parentElement.style.width = "100%";
+        this.mode = "large";
+      }
     },
 
     makeSmall() {
-      if (this.alwaysLarge && this.isImage) return;
-      this.$el.parentElement.style.width = "";
-      this.$el.parentElement.style.height = "";
-      this.mode = "small";
+      if (!(this.alwaysLarge && this.isImage)) {
+        this.$el.parentElement.style.width = "";
+        this.mode = "small";
+      }
     }
   }
 };
@@ -72,6 +70,8 @@ img {
   width: 100%;
   border-radius: 4px;
   vertical-align: middle;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 video {

@@ -1,9 +1,6 @@
 module.exports = {
-  webpack: (config, options, webpack) => ({
-    ...config,
-    entry: {
-      ...config.entry,
-      main: "./server.js"
-    }
-  })
-}
+  webpack: (config, options, webpack) => {
+    config.entry.main = "./server.js";
+    return config;
+  }
+};

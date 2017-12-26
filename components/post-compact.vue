@@ -27,6 +27,6 @@ export default {
 .media {
   width: 35%;
   float: left;
-  margin: 0 15px 5px 0;
+  margin: 0 15px 15px 0;
 }
 </style>

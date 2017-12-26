@@ -1,5 +1,6 @@
 <template>
   <div>
+    <tc-loader :show="$store.state.threads.list.length < 1" />
     <thread-preview v-for="item in $store.state.threads.list" :key="item.posts[0].no" :thread="item"/>
     <div class="pagination" v-if="$store.state.threads.list.length > 0">
       <nuxt-link v-if="page > 1" tag="button" :to="link(-1)"  class="prev">
@@ -13,10 +14,12 @@
 </template>
 
 <script>
+import TcLoader from "@/components/tc-loader";
 import ThreadPreview from "@/components/thread-preview";
 
 export default {
   components: {
+    TcLoader,
     ThreadPreview
   },
 

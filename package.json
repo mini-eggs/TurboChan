@@ -7,12 +7,13 @@
     "dev": "cross-env HOST=192.168.0.19 PORT=8080 backpack dev",
     "build": "nuxt build && backpack build",
     "start": "cross-env NODE_ENV=production node build/main.js",
-    "static": "cross-env ROUTER=hash nuxt generate",
+    "static": "cross-env STANDALONE=true nuxt generate",
     "postinstall": "npm run build"
   },
   "dependencies": {
     "axios": "^0.17.1",
     "backpack-core": "^0.4.3",
+    "compression": "^1.7.1",
     "cors": "^2.8.4",
     "cross-env": "^5.1.3",
     "express": "^4.16.2",

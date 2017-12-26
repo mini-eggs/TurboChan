@@ -73,16 +73,16 @@ module.exports = require("express");
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("axios");
+module.exports = __webpack_require__(10);
+
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__(9);
-
+module.exports = require("axios");
 
 /***/ }),
 /* 3 */
@@ -94,30 +94,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cors__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_nuxt__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nuxt_config_js__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nuxt_config_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__nuxt_config_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_compression__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_compression___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_compression__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_nuxt__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_nuxt__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nuxt_config_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nuxt_config_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__nuxt_config_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api__ = __webpack_require__(8);
 
 
 
 
 
 
-__WEBPACK_IMPORTED_MODULE_3__nuxt_config_js___default.a.dev = !("production" === "production");
+
+__WEBPACK_IMPORTED_MODULE_4__nuxt_config_js___default.a.dev = !("development" === "production");
 
 var app = __WEBPACK_IMPORTED_MODULE_0_express___default()();
 var port = process.env.PORT || 8080;
-var nuxt = new __WEBPACK_IMPORTED_MODULE_2_nuxt__["Nuxt"](__WEBPACK_IMPORTED_MODULE_3__nuxt_config_js___default.a);
+var nuxt = new __WEBPACK_IMPORTED_MODULE_3_nuxt__["Nuxt"](__WEBPACK_IMPORTED_MODULE_4__nuxt_config_js___default.a);
 
 if (nuxt.options.dev) {
-  new __WEBPACK_IMPORTED_MODULE_2_nuxt__["Builder"](nuxt).build();
+  new __WEBPACK_IMPORTED_MODULE_3_nuxt__["Builder"](nuxt).build();
 }
 
 app.set("port", port);
 app.use(__WEBPACK_IMPORTED_MODULE_1_cors___default()());
-app.use("/api", __WEBPACK_IMPORTED_MODULE_4__api__["a" /* default */]);
+app.use(__WEBPACK_IMPORTED_MODULE_2_compression___default()());
+app.use("/api", __WEBPACK_IMPORTED_MODULE_5__api__["a" /* default */]);
 app.use(nuxt.render);
 app.listen(port, function () {
   return console.log("\nServer has started.\n");
@@ -139,105 +143,42 @@ module.exports = require("nuxt");
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var axios = __webpack_require__(1);
+var webpack = __webpack_require__(7);
 
 module.exports = {
-  head: {
-    title: "Turbo Chan",
-    meta: [{ charset: "utf-8" }, {
-      name: "viewport",
-      content: "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    }, { name: "apple-mobile-web-app-title", content: "Turbo Chan" }, { name: "apple-mobile-web-app-capable", content: "yes" }, {
-      name: "apple-mobile-web-app-status-bar-style",
-      content: "black-translucent"
-    }, { name: "msapplication-TileColor", content: "#343442" }, { name: "msapplication-TileImage", content: "/ms-icon-144x144.png" }, { name: "theme-color", content: "#343442" }],
-    link: [{
-      rel: "apple-touch-icon",
-      sizes: "57x57",
-      href: "/apple-icon-57x57.png"
-    }, {
-      rel: "apple-touch-icon",
-      sizes: "60x60",
-      href: "/apple-icon-60x60.png"
-    }, {
-      rel: "apple-touch-icon",
-      sizes: "72x72",
-      href: "/apple-icon-72x72.png"
-    }, {
-      rel: "apple-touch-icon",
-      sizes: "76x76",
-      href: "/apple-icon-76x76.png"
-    }, {
-      rel: "apple-touch-icon",
-      sizes: "114x114",
-      href: "/apple-icon-114x114.png"
-    }, {
-      rel: "apple-touch-icon",
-      sizes: "120x120",
-      href: "/apple-icon-120x120.png"
-    }, {
-      rel: "apple-touch-icon",
-      sizes: "144x144",
-      href: "/apple-icon-144x144.png"
-    }, {
-      rel: "apple-touch-icon",
-      sizes: "152x152",
-      href: "/apple-icon-152x152.png"
-    }, {
-      rel: "apple-touch-icon",
-      sizes: "180x180",
-      href: "/apple-icon-180x180.png"
-    }, {
-      rel: "icon",
-      type: "image/png",
-      sizes: "192x192",
-      href: "/android-icon-192x192.png"
-    }, {
-      rel: "icon",
-      type: "image/png",
-      sizes: "32x32",
-      href: "/android-icon-32x32.png"
-    }, {
-      rel: "icon",
-      type: "image/png",
-      sizes: "96x96",
-      href: "/android-icon-96x96.png"
-    }, {
-      rel: "icon",
-      type: "image/png",
-      sizes: "16x16",
-      href: "/android-icon-16x16.png"
-    }, {
-      rel: "icon",
-      type: "image/png",
-      sizes: "TEST",
-      href: "/android-icon-192x192.png"
-    }, { rel: "manifest", href: "/manifest.json" }, {
-      rel: "apple-touch-startup-image",
-      href: "/splash.png"
-    }, { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }, {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css?family=Roboto"
-    }]
-  },
-  loading: { color: "transparent" }
+  head: { title: "Turbo Chan" },
+  loading: { color: "transparent" },
+  build: {
+    extend: function extend(config) {
+      /* disable code splitting */
+      config.plugins = config.plugins.concat([new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 0 })]);
+      return config;
+    }
+  }
 };
 
-if (process.env.ROUTER) {
-  module.exports.router = { mode: process.env.ROUTER };
+if (process.env.STANDALONE) {
+  /* Use has router for Corodova */
+  module.exports.router = { mode: "hash" };
 }
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack");
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boards__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__threads__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__posts__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boards__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__threads__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__posts__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media__ = __webpack_require__(13);
 
 
 
@@ -253,15 +194,15 @@ router.use(__WEBPACK_IMPORTED_MODULE_4__media__["a" /* default */]);
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 
 
@@ -305,21 +246,21 @@ router.get("/boards", function () {
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("regenerator-runtime");
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 
 
@@ -365,15 +306,15 @@ router.get("/:board/:page", function () {
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 
 
@@ -419,15 +360,15 @@ router.get("/:board/thread/:thread", function () {
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 
 
@@ -475,6 +416,12 @@ router.get("/media/:thread/:media", function () {
 }());
 
 /* harmony default export */ __webpack_exports__["a"] = (router);
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = require("compression");
 
 /***/ })
 /******/ ]);
