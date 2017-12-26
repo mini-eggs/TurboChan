@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 module.exports = {
   head: {
     title: "Turbo Chan",
@@ -109,16 +107,8 @@ module.exports = {
     ]
   },
   loading: { color: "transparent" }
-  // generate: {
-  //   routes: async () => {
-  //     const res = await axios("https://a.4cdn.org/boards.json");
-
-  //     const routes = res.data.boards.map(({ board }) => [
-  //       `/${board}`,
-  //       ...Array.from({ length: 10 }).map((_, i) => `/${board}/${i + 1}`)
-  //     ]);
-
-  //     return routes.reduce((a, b) => [...a, ...b]);
-  //   }
-  // }
 };
+
+if (process.env.ROUTER) {
+  module.exports.router = { mode: process.env.ROUTER };
+}

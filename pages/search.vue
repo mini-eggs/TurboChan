@@ -1,13 +1,13 @@
 <template>
-  <search/>
+  <search-scene/>
 </template>
 
 <script>
-import Search from "@/scenes/search";
+import SearchScene from "@/scenes/search";
 
 export default {
   components: {
-    Search
+    SearchScene
   },
 
   async mounted() {
