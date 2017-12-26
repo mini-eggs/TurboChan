@@ -12,7 +12,7 @@
 
 <script>
 import { API_BASE } from "@/constants/";
-import SimpleImage from "vue-simple-image";
+import SimpleImage from "@/vue-simple-image";
 
 export default {
   props: ["item", "alwaysLarge"],
