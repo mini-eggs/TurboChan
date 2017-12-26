@@ -1,10 +1,10 @@
 <template>
   <div class="media-container">
     <div @click="makeLarge" v-if="mode === 'small'" :class="{ 'play': !isImage }">
-      <simple-image :src="small"><h1>hi</h1></simple-image>
+      <simple-image :src="small" />
     </div>
     <div @click="makeSmall" v-else>
-      <simple-image v-if="isImage" :src="large"><h1>wow!</h1></simple-image>
+      <simple-image v-if="isImage" :src="large" />
       <video v-else autoplay loop :src="large"/>
     </div>
   </div>
@@ -12,7 +12,7 @@
 
 <script>
 import { API_BASE } from "@/constants/";
-import SimpleImage from "../vue-simple-image";
+import SimpleImage from "vue-simple-image";
 
 export default {
   props: ["item", "alwaysLarge"],

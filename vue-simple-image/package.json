@@ -1,6 +1,6 @@
 {
   "name": "vue-simple-image",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple progressive image component for Vue.",
   "main": "/src/index.vue",
   "keywords": ["Vue", "Image", "Progressive"],
