@@ -10,7 +10,11 @@ import Axios from "axios";
 const mockedToken = { cancel: () => undefined };
 
 export default {
-  props: ["src"],
+  props: {
+    src: { required: true, type: String },
+    onComplete: { require: false, type: Function, default: () => undefined },
+    onFail: { require: false, type: Function, default: () => undefined }
+  },
 
   data: () => ({ hasLoaded: false, blob: null, cancelToken: mockedToken }),
 
@@ -22,6 +26,7 @@ export default {
   },
 
   mounted() {
+    console.log(this);
     this.loadImage();
   },
 
@@ -31,16 +36,20 @@ export default {
 
   methods: {
     async loadImage() {
-      // Set cancel token
       const cancelToken = Axios.CancelToken;
       const source = cancelToken.source();
       this.cancelToken = source;
-      // Init request
-      const opts = { responseType: "blob" };
-      const res = await Axios(this.src, { cancelToken: source.token, ...opts });
-      // Set data
-      this.blob = (window.URL || window.webkitURL).createObjectURL(res.data);
-      this.hasLoaded = true;
+      try {
+        const res = await Axios(this.src, {
+          cancelToken: source.token,
+          responseType: "blob"
+        });
+        this.blob = (window.URL || window.webkitURL).createObjectURL(res.data);
+        this.hasLoaded = true;
+        this.onComplete();
+      } catch (e) {
+        this.onFail(e);
+      }
     }
   }
 };

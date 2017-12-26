@@ -1,10 +1,10 @@
 <template>
   <div class="media-container">
     <div @click="makeLarge" v-if="mode === 'small'" :class="{ 'play': !isImage }">
-      <tc-image :src="small"/>
+      <simple-image :src="small"><h1>hi</h1></simple-image>
     </div>
     <div @click="makeSmall" v-else>
-      <tc-image v-if="isImage" :src="large" />
+      <simple-image v-if="isImage" :src="large"><h1>wow!</h1></simple-image>
       <video v-else autoplay loop :src="large"/>
     </div>
   </div>
@@ -12,11 +12,12 @@
 
 <script>
 import { API_BASE } from "@/constants/";
-import TcImage from "@/components/tc-image";
+import SimpleImage from "../vue-simple-image";
 
 export default {
   props: ["item", "alwaysLarge"],
-  components: { TcImage },
+
+  components: { SimpleImage },
 
   data() {
     const board = this.$route.params.board;
