@@ -8,13 +8,6 @@ Just another read-only 4Chan client that is lacking features.
 
 Trying out Nuxt + Backpack.
 
-#### Screenshots
-
-<img src="https://raw.githubusercontent.com/mini-eggs/TurboChan/master/assets/IMG_5989.PNG" width="20%" align="left" />
-<img src="https://raw.githubusercontent.com/mini-eggs/TurboChan/master/assets/IMG_5990.PNG" width="20%" align="left" />
-<img src="https://raw.githubusercontent.com/mini-eggs/TurboChan/master/assets/IMG_5991.PNG" width="20%" align="left" />
-<img src="https://raw.githubusercontent.com/mini-eggs/TurboChan/master/assets/IMG_5992.PNG" width="20%" align="left" />
-
 #### Dev build
 
 `$ npm run dev`
@@ -32,3 +25,10 @@ Now open at http://localhost:8080
 #### With Docker
 
 `$ docker build -t IMAGE_NAME . && docker run -p PORT:8080 IMAGE_NAME`
+
+#### Screenshots
+
+<img src="https://raw.githubusercontent.com/mini-eggs/TurboChan/master/assets/IMG_5989.PNG" width="20%" align="left" />
+<img src="https://raw.githubusercontent.com/mini-eggs/TurboChan/master/assets/IMG_5990.PNG" width="20%" align="left" />
+<img src="https://raw.githubusercontent.com/mini-eggs/TurboChan/master/assets/IMG_5991.PNG" width="20%" align="left" />
+<img src="https://raw.githubusercontent.com/mini-eggs/TurboChan/master/assets/IMG_5992.PNG" width="20%" align="left" />
