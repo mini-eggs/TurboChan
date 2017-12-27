@@ -108,7 +108,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__WEBPACK_IMPORTED_MODULE_4__nuxt_config_js___default.a.dev = !("production" === "production");
+__WEBPACK_IMPORTED_MODULE_4__nuxt_config_js___default.a.dev = !("development" === "production");
 
 var app = __WEBPACK_IMPORTED_MODULE_0_express___default()();
 var port = process.env.PORT || 8080;

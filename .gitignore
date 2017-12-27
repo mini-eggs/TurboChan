@@ -1,5 +1,6 @@
 # dependencies
 node_modules
+vue-simple-image
 
 # logs
 npm-debug.log

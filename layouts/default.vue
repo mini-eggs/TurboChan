@@ -63,4 +63,14 @@ select {
 a {
   color: #bd3d24;
 }
+
+/* Common transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

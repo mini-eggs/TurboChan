@@ -1,11 +1,15 @@
 <template>
-  <div class="media-container">
+  <div class="media-container" :style="{ height }">
     <div @click="makeLarge" v-if="mode === 'small'" :class="{ 'play': !isImage }">
-      <simple-image :src="small" />
+      <transition name="fade">
+        <simple-image :src="small" />
+      </transition>
     </div>
     <div @click="makeSmall" v-else>
-      <simple-image v-if="isImage" :src="large" />
-      <video v-else autoplay loop :src="large"/>
+      <transition name="fade">
+        <simple-image v-if="isImage" :src="large" />
+        <video v-else autoplay loop :src="large"/>
+      </transition>
     </div>
   </div>
 </template>
@@ -25,17 +29,35 @@ export default {
     const large = `${API_BASE}/api/media/${board}/${tim}${ext}`;
     const small = `${API_BASE}/api/media/${board}/${tim}s.jpg`;
     const isImage = [".gif", ".jpg", ".jpeg", ".png"].includes(ext);
+    const height = "auto";
+    const mode = this.alwaysLarge && isImage ? "large" : "small";
+    return { height, large, small, mode, isImage };
+  },
 
-    return {
-      large,
-      small,
-      mode: this.alwaysLarge && isImage ? "large" : "small",
-      isImage,
-      size: {}
-    };
+  watch: {
+    mode() {
+      this.setHeight();
+    }
+  },
+
+  mounted() {
+    this.setHeight();
+    window.addEventListener("resize", this.setHeight);
+  },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", this.setHeight);
   },
 
   methods: {
+    setHeight() {
+      const width = this.$el.offsetWidth;
+      const heightL = width / this.item.w * this.item.h;
+      const heightS = width / this.item.tn_w * this.item.tn_h;
+      const height = this.mode === "large" ? heightL : heightS;
+      this.height = `${height}px`;
+    },
+
     makeLarge() {
       if (!(this.alwaysLarge && this.isImage)) {
         const container = this.$el.parentElement.parentElement.offsetWidth - 10;
@@ -56,15 +78,14 @@ export default {
 
 <style scoped>
 .media-container {
+  background-color: rgba(0, 0, 0, 0.25);
   cursor: pointer;
-}
-
-.background {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
   border-radius: 4px;
   overflow: hidden;
+  background-image: url("../assets/ic_insert_photo_white_24px.svg");
+  background-size: 25% 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 img {
@@ -72,7 +93,6 @@ img {
   border-radius: 4px;
   vertical-align: middle;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.25);
 }
 
 video {
