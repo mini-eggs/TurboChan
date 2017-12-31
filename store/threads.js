@@ -29,6 +29,9 @@ export default {
       commit("received", { threads: [] });
       const res = await Axios(`${API_BASE}/api/${board}/${page}`);
       commit("received", format({ board, threads: res.data.threads }));
+    },
+    clear({ commit }) {
+      commit("received", { threads: [] });
     }
   }
 };

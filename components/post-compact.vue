@@ -21,7 +21,7 @@ export default {
 <style scoped>
 .container {
   overflow: hidden;
-  padding: 0 5px;
+  padding: 0 15px;
 }
 
 .media {

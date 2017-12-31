@@ -14,6 +14,10 @@ export default {
     await this.$store.dispatch("posts/request", this.$route.params);
   },
 
+  destroyed() {
+    this.$store.dispatch("posts/clear");
+  },
+
   head() {
     const { board, thread } = this.$route.params;
     return { title: `/${board}/ - ${thread} - TurboChan` };

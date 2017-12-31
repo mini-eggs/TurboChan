@@ -14,6 +14,9 @@ export default {
     async request({ commit }) {
       const res = await Axios(`${API_BASE}/api/boards`);
       commit("received", res.data);
+    },
+    clear({ commit }) {
+      commit("received", { boards: [] });
     }
   }
 };

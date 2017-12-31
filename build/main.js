@@ -75,7 +75,7 @@ module.exports = require("express");
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(11);
+module.exports = __webpack_require__(10);
 
 
 /***/ }),
@@ -100,7 +100,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_nuxt__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nuxt_config_js__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nuxt_config_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__nuxt_config_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api__ = __webpack_require__(8);
 
 
 
@@ -147,44 +147,42 @@ module.exports = require("nuxt");
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var webpack = __webpack_require__(8);
+/***/ (function(module, exports) {
 
 module.exports = {
   head: { title: "Turbo Chan" },
-  loading: { color: "transparent" },
-  build: {
-    extend: function extend(config) {
-      /* disable code splitting */
-      config.plugins = config.plugins.concat([new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 0 })]);
-      return config;
-    }
-  }
+  loading: { color: "transparent" }
 };
 
-if (process.env.STANDALONE) {
-  /* Use has router for Corodova */
-  module.exports.router = { mode: "hash" };
-}
+// const webpack = require("webpack");
+
+// if (process.env.STANDALONE) {
+//   /* Use has router for Corodova */
+//   module.exports.router = { mode: "hash" };
+// }
+
+// disable code splitting.
+// build: {
+//   extend(config) {
+//     /* disable code splitting */
+//     config.plugins = config.plugins.concat([
+//       new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
+//     ]);
+//     return config;
+//   }
+// }
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
-
-module.exports = require("webpack");
-
-/***/ }),
-/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boards__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__threads__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__posts__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boards__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__threads__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__posts__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media__ = __webpack_require__(13);
 
 
 
@@ -200,7 +198,7 @@ router.use(__WEBPACK_IMPORTED_MODULE_4__media__["a" /* default */]);
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -252,13 +250,13 @@ router.get("/boards", function () {
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("regenerator-runtime");
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -312,7 +310,7 @@ router.get("/:board/:page", function () {
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -366,7 +364,7 @@ router.get("/:board/thread/:thread", function () {
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -1,15 +1,16 @@
 <template>
   <div>
-    <tc-loader :show="$store.state.threads.list.length < 1" />
-    <thread-preview v-for="item in $store.state.threads.list" :key="item.posts[0].no" :thread="item"/>
-    <div class="pagination" v-if="$store.state.threads.list.length > 0">
-      <nuxt-link v-if="page > 1" tag="button" :to="link(-1)"  class="prev">
-        <img src="../assets/ic_arrow_back_white_24px.svg" />
-      </nuxt-link>
-      <nuxt-link v-if="page < 10" tag="button" :to="link(1)" class="next">
-        <img src="../assets/ic_arrow_forward_white_24px.svg" />        
-      </nuxt-link>
-    </div>
+    <tc-loader :show="$store.state.threads.list.length < 1">
+      <thread-preview v-for="item in $store.state.threads.list" :key="item.posts[0].no" :thread="item"/>
+      <div class="pagination" v-if="$store.state.threads.list.length > 0">
+        <nuxt-link v-if="page > 1" tag="button" :to="link(-1)"  class="prev">
+          <img src="../assets/ic_arrow_back_white_24px.svg" />
+        </nuxt-link>
+        <nuxt-link v-if="page < 10" tag="button" :to="link(1)" class="next">
+          <img src="../assets/ic_arrow_forward_white_24px.svg" />        
+        </nuxt-link>
+      </div>
+    </tc-loader>
   </div>
 </template>
 

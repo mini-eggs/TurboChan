@@ -24,6 +24,10 @@ export default {
     }
   },
 
+  mounted() {
+    this.$el.querySelector("input").focus();
+  },
+
   destroyed() {
     this.$store.dispatch("user/updateInput", { target: { value: "" } });
   }

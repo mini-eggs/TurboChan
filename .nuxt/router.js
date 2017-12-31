@@ -5,7 +5,6 @@ Vue.use(Router)
 
 const _2c972a65 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
 const _120cfba5 = () => import('../pages/search.vue' /* webpackChunkName: "pages/search" */).then(m => m.default || m)
-const _54c6bbf3 = () => import('../pages/contact.vue' /* webpackChunkName: "pages/contact" */).then(m => m.default || m)
 const _0cdf4fa0 = () => import('../pages/about.vue' /* webpackChunkName: "pages/about" */).then(m => m.default || m)
 const _37a15be7 = () => import('../pages/_board/index.vue' /* webpackChunkName: "pages/_board/index" */).then(m => m.default || m)
 const _ab486042 = () => import('../pages/_board/thread/_thread.vue' /* webpackChunkName: "pages/_board/thread/_thread" */).then(m => m.default || m)
@@ -54,11 +53,6 @@ export function createRouter () {
 			path: "/search",
 			component: _120cfba5,
 			name: "search"
-		},
-		{
-			path: "/contact",
-			component: _54c6bbf3,
-			name: "contact"
 		},
 		{
 			path: "/about",

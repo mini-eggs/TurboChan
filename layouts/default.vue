@@ -9,7 +9,6 @@
 
 <script>
 import TcHeader from "@/components/tc-header";
-
 export default { components: { TcHeader } };
 </script>
 
@@ -20,7 +19,10 @@ body {
   margin: 0;
   background-color: #343442;
   color: white;
-  min-height: calc(100vh + 1px);
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 /* status bar pwa fix for ios */

@@ -1,9 +1,16 @@
 <template>
-  <transition name="fade">
-    <section v-if="show" class="loading-container">
-      <img src="../assets/ic_autorenew_white_24px.svg" />
+  <div>
+    <section class="loading-container" :class="{ 'hidden': !show }">
+      <transition name="fade">
+        <img v-if="show" src="../assets/ic_autorenew_white_24px.svg" />
+      </transition>
     </section>
-  </transition>
+    <transition name="fade">
+      <div v-if="!show">
+        <slot></slot>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -12,14 +19,14 @@ export default { props: ["show"] };
 
 <style scoped>
 .loading-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition-duration: 400ms;
+}
+
+.loading-container.hidden {
+  margin-top: -106px;
 }
 
 .loading-container img {

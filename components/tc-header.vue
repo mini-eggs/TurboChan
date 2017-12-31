@@ -5,7 +5,7 @@
         <header>
           <transition name="up-and-out">
             <nuxt-link to="/" v-if="displayBrand" class="brand">
-              <img src="../assets/logo_white.png" />
+              <!-- <img src="../assets/logo_white.png" /> -->
               <span>Turbo Chan</span>
             </nuxt-link>
           </transition>
@@ -19,9 +19,9 @@
             <nuxt-link to="/">
               <img src="../assets/ic_home_white_24px.svg"/>
             </nuxt-link>
-            <nuxt-link to="/contact">
-              <img src="../assets/ic_mail_white_24px.svg"/>
-            </nuxt-link>
+            <a @click="handleRefresh">
+              <img src="../assets/ic_autorenew_white_24px.svg" style="transform: rotate(45deg);"/>
+            </a>
             <nuxt-link to="/about">
               <img src="../assets/ic_settings_white_24px.svg"/>
             </nuxt-link>
@@ -41,6 +41,24 @@ export default {
   },
 
   methods: {
+    async handleRefresh() {
+      if ( this.$route.name === "board" ) {
+        window.scrollTo(0, 0);
+        await this.$store.dispatch("threads/clear");
+        await this.$store.dispatch("threads/request", { page: 1, ...this.$route.params });
+      }
+      else if ( this.$route.name === "board-thread-thread" ) {
+        window.scrollTo(0, 0);
+        await this.$store.dispatch("posts/clear");
+        await this.$store.dispatch("posts/request", { ...this.$route.params });
+      }
+      else if ( this.$route.name === "index" ) {
+        window.scrollTo(0, 0);
+        await this.$store.dispatch("boards/clear");
+        await this.$store.dispatch("boards/request");
+      }
+    },
+
     handleScroll() {
       const posY = window.pageYOffset || document.documentElement.scrollTop;
       const diff = Math.abs(posY - this.posY);
@@ -54,7 +72,7 @@ export default {
 
 <style>
 section {
-  min-height: 115.72px;
+  min-height: 106px;
 }
 
 .header-container {
@@ -91,7 +109,8 @@ header img {
 
 header .brand {
   padding: 0 5px;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
+  padding-bottom: 20px;
   font-weight: bold;
   font-size: 22px;
   display: flex;
@@ -126,6 +145,6 @@ header nav a {
 
 .up-and-out-enter,
 .up-and-out-leave-to {
-  margin-top: -56.72px;
+  margin-top: -46px;
 }
 </style>

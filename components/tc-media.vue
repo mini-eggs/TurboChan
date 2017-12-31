@@ -1,6 +1,6 @@
 <template>
-  <div class="media-container" :style="{ height }">
-    <div @click="makeLarge" v-if="mode === 'small'" :class="{ 'play': !isImage }">
+  <div class="media-container" :style="{ height }" :class="{ 'play': !isImage }">
+    <div class="preview" @click="makeLarge" v-if="mode === 'small'">
       <transition name="fade">
         <simple-image :src="small" />
       </transition>
@@ -86,6 +86,11 @@ export default {
   background-size: 25% 25%;
   background-position: center center;
   background-repeat: no-repeat;
+  position: relative;
+}
+
+.media-container.play {
+  background-image: none;
 }
 
 img {
@@ -100,13 +105,15 @@ video {
   vertical-align: middle;
 }
 
-.play {
+.play .preview {
   overflow: hidden;
   object-fit: contain;
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.play:after {
+.play .preview:after {
   content: " ";
   position: absolute;
   top: 50%;
