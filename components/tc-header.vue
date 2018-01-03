@@ -42,8 +42,9 @@ export default {
 
   methods: {
     async handleRefresh() {
-      if (this.$route.name === "board") {
+      if (this.$route.name === "board" || this.$route.name === "board-page") {
         window.scrollTo(0, 0);
+        this.$router.push({ path: `/${this.$route.params.board}/1` })
         await this.$store.dispatch("threads/clear");
         await this.$store.dispatch("threads/request", { page: 1, ...this.$route.params });
       } else if (this.$route.name === "board-thread-thread") {
