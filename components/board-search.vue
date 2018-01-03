@@ -1,7 +1,7 @@
 <template>
   <div>
     <form action="/search" @submit.prevent.stop="handleSubmit">
-      <input autocomplete="off" autofocus type="text" placeholder="Try 'tech'" name="board" @input="$store.dispatch('user/updateInput', $event)" />
+      <input autocomplete="off" autofocus="true" type="text" placeholder="Try 'tech'" name="board" @input="$store.dispatch('user/updateInput', $event)" />
     </form>
     <board-intro :item="item" v-for="item in $store.getters.filterdBoards" :key="item.board"/>
   </div>
@@ -15,21 +15,20 @@ export default {
 
   props: ["boards"],
 
-  methods: {
-    handleSubmit() {
-      const first = this.$store.getters.filterdBoards.shift();
-      if (first) {
-        this.$router.push({ path: `/${first.board}` });
-      }
-    }
-  },
-
   mounted() {
     this.$el.querySelector("input").focus();
   },
 
   destroyed() {
     this.$store.dispatch("user/updateInput", { target: { value: "" } });
+  },
+
+  methods: {
+    handleSubmit() {
+      if (this.$store.getters.filterdBoards.length > 0) {
+        this.$router.push({ path: `/${this.$store.getters.filterdBoards.shift().board}` });
+      }
+    }
   }
 };
 </script>

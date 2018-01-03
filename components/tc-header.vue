@@ -42,17 +42,15 @@ export default {
 
   methods: {
     async handleRefresh() {
-      if ( this.$route.name === "board" ) {
+      if (this.$route.name === "board") {
         window.scrollTo(0, 0);
         await this.$store.dispatch("threads/clear");
         await this.$store.dispatch("threads/request", { page: 1, ...this.$route.params });
-      }
-      else if ( this.$route.name === "board-thread-thread" ) {
+      } else if (this.$route.name === "board-thread-thread") {
         window.scrollTo(0, 0);
         await this.$store.dispatch("posts/clear");
         await this.$store.dispatch("posts/request", { ...this.$route.params });
-      }
-      else if ( this.$route.name === "index" ) {
+      } else if (this.$route.name === "index") {
         window.scrollTo(0, 0);
         await this.$store.dispatch("boards/clear");
         await this.$store.dispatch("boards/request");

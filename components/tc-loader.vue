@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <section class="loading-container" :class="{ 'hidden': !show }">
+  <div class="tc-loader-container" :class="{ 'hidden': !show }">
+    <section>
       <transition name="fade">
         <img v-if="show" src="../assets/ic_autorenew_white_24px.svg" />
       </transition>
@@ -18,18 +18,21 @@ export default { props: ["show"] };
 </script>
 
 <style scoped>
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.tc-loader-container {
   transition-duration: 400ms;
 }
 
-.loading-container.hidden {
-  margin-top: -106px;
+.tc-loader-container.hidden {
+  transform: translateY(-106px);
 }
 
-.loading-container img {
+.tc-loader-container > section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tc-loader-container > section img {
   width: 30px;
   animation: Spin 2s infinite linear;
 }
