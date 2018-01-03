@@ -10,18 +10,18 @@
             </nuxt-link>
           </transition>
           <nav>
-            <a @click.stop.prevent="$router.go(-1)">
+            <button @click.stop.prevent="$router.go(-1)">
               <img src="../assets/ic_arrow_back_white_24px.svg"/>
-            </a>
+            </button>
             <nuxt-link to="/search">
               <img src="../assets/ic_search_white_24px.svg"/>
             </nuxt-link>
             <nuxt-link to="/">
               <img src="../assets/ic_home_white_24px.svg"/>
             </nuxt-link>
-            <a @click="handleRefresh">
+            <button @click="handleRefresh">
               <img src="../assets/ic_autorenew_white_24px.svg" style="transform: rotate(45deg);"/>
-            </a>
+            </button>
             <nuxt-link to="/about">
               <img src="../assets/ic_settings_white_24px.svg"/>
             </nuxt-link>
@@ -69,7 +69,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 section {
   min-height: 106px;
 }
@@ -128,11 +128,15 @@ header nav {
   justify-content: space-between;
 }
 
+header nav button,
 header nav a {
   cursor: pointer;
   text-align: center;
   width: 25%;
   display: block;
+  border: none;
+  background-color: transparent;
+  overflow: hidden;
 }
 </style>
 

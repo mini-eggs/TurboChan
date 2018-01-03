@@ -154,24 +154,6 @@ module.exports = {
   loading: { color: "transparent" }
 };
 
-// const webpack = require("webpack");
-
-// if (process.env.STANDALONE) {
-//   /* Use has router for Corodova */
-//   module.exports.router = { mode: "hash" };
-// }
-
-// disable code splitting.
-// build: {
-//   extend(config) {
-//     /* disable code splitting */
-//     config.plugins = config.plugins.concat([
-//       new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
-//     ]);
-//     return config;
-//   }
-// }
-
 /***/ }),
 /* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

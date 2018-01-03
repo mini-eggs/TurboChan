@@ -23,13 +23,20 @@ export default { props: ["show"] };
 }
 
 .tc-loader-container.hidden {
-  transform: translateY(-106px);
+  margin-top: -100px;
+  /* transform: translateY(-100px); */
 }
 
 .tc-loader-container > section {
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition-duration: 400ms;
+}
+
+.tc-loader-container.hidden > section {
+  /* margin-top: -100px; */
 }
 
 .tc-loader-container > section img {

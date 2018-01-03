@@ -14,19 +14,10 @@
 
 <style scoped>
 section.about {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   line-height: 1.4;
-}
-
-section.about > * {
-  max-width: 300px;
+  font-size: 20px;
+  margin-right: calc(10% - 15px);
+  margin-left: calc(10% - 15px);
+  padding: 15px 5px 15px;
 }
 </style>

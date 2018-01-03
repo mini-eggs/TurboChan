@@ -42,6 +42,11 @@ body:before {
   padding: 0;
 }
 
+*:focus {
+  border: none;
+  outline: rgb(82, 148, 226) auto 5px;
+}
+
 .page-container {
   max-width: 600px;
   padding: 0 10px 15px;

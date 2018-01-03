@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
 form {
-  margin-top: 10px;
+  margin-top: 15px;
   display: flex;
 }
 
