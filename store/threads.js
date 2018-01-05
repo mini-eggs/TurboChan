@@ -1,5 +1,4 @@
-import Axios from "axios";
-import { API_BASE } from "@/constants/";
+import Request from "@/constants/request";
 
 Array.prototype.first = function() {
   return [...this].shift().no;
@@ -27,7 +26,7 @@ export default {
   actions: {
     async request({ commit }, { board, page }) {
       commit("received", { threads: [] });
-      const res = await Axios(`${API_BASE}/api/${board}/${page}`);
+      const res = await Request(`/api/${board}/${page}`);
       commit("received", format({ board, threads: res.data.threads }));
     },
     clear({ commit }) {

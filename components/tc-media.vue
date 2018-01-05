@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { API_BASE } from "@/constants/";
 import SimpleImage from "@/vue-simple-image";
 
 export default {
@@ -26,8 +25,8 @@ export default {
   data() {
     const board = this.$route.params.board;
     const { w, h, tn_w, tn_h, tim, ext } = this.item;
-    const large = `${API_BASE}/api/media/${board}/${tim}${ext}`;
-    const small = `${API_BASE}/api/media/${board}/${tim}s.jpg`;
+    const large = `/api/media/${board}/${tim}${ext}`;
+    const small = `/api/media/${board}/${tim}s.jpg`;
     const isImage = [".gif", ".jpg", ".jpeg", ".png"].includes(ext);
     const height = "auto";
     const mode = this.alwaysLarge && isImage ? "large" : "small";

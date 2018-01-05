@@ -4,18 +4,19 @@
   "description": "Just another Chan",
   "author": "Evan M Jones <evanjones4040@gmail.com> (http://evanjon.es/)",
   "scripts": {
-    "dev": "cross-env HOST=192.168.0.19 PORT=8080 backpack dev",
+    "dev": "cross-env PORT=8080 backpack dev -r dotenv/config",
     "build": "cross-env NODE_ENV=production nuxt build && backpack build",
     "start": "cross-env NODE_ENV=production node build/main.js",
-    "static": "cross-env STANDALONE=true nuxt generate",
-    "clean": "rm -rf node_modules vue-simple-image/node_modules dist"
+    "clean": "rm -rf node_modules build dist vue-simple-image/node_modules"
   },
   "dependencies": {
+    "@nuxtjs/workbox": "^2.1.1",
     "axios": "^0.17.1",
     "backpack-core": "^0.4.3",
     "compression": "^1.7.1",
     "cors": "^2.8.4",
     "cross-env": "^5.1.3",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "nuxt": "^1.0.0-rc11"
   }

@@ -20,4 +20,4 @@ app.use(CORS());
 app.use(Compression());
 app.use("/api", API);
 app.use(nuxt.render);
-app.listen(port, () => console.log("\nServer has started.\n"));
+app.listen(port, () => console.log(`\nServer has started on port${port}.\n`));
