@@ -15,7 +15,7 @@ export default { components: { TcHeader } };
 <style>
 html,
 body {
-  font-family: Roboto, sans-serif;
+  font-family: arial, sans-serif;
   margin: 0;
   background-color: #343442;
   color: white;
@@ -78,6 +78,18 @@ a {
 }
 .fade-enter,
 .fade-leave-to {
+  opacity: 0;
+}
+
+.fade-out-instant-enter-active {
+  transition: opacity 0.5s;
+}
+
+.fade-out-instant-leave-active {
+  transition: opacity 0;
+}
+.fade-out-instant-enter,
+.fade-out-instant-leave-to {
   opacity: 0;
 }
 </style>

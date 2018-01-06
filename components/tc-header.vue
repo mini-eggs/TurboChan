@@ -13,15 +13,15 @@
             <button @click.stop.prevent="$router.go(-1)">
               <img src="../assets/ic_arrow_back_white_24px.svg"/>
             </button>
-            <nuxt-link to="/search">
-              <img src="../assets/ic_search_white_24px.svg"/>
-            </nuxt-link>
             <nuxt-link to="/">
               <img src="../assets/ic_home_white_24px.svg"/>
             </nuxt-link>
-            <button @click="handleRefresh">
+            <nuxt-link to="/search">
+              <img src="../assets/ic_search_white_24px.svg"/>
+            </nuxt-link>
+            <!-- <button @click="handleRefresh">
               <img src="../assets/ic_autorenew_white_24px.svg" style="transform: rotate(45deg);"/>
-            </button>
+            </button> -->
             <nuxt-link to="/about">
               <img src="../assets/ic_settings_white_24px.svg"/>
             </nuxt-link>
@@ -33,31 +33,18 @@
 </template>
 
 <script>
+import Refresh from "@/mixins/refresh";
+
 export default {
   data: () => ({ displayBrand: true, posY: 0 }),
+
+  mixins: [Refresh],
 
   mounted() {
     window.onscroll = this.handleScroll;
   },
 
   methods: {
-    async handleRefresh() {
-      if (this.$route.name === "board" || this.$route.name === "board-page") {
-        window.scrollTo(0, 0);
-        this.$router.push({ path: `/${this.$route.params.board}/1` })
-        await this.$store.dispatch("threads/clear");
-        await this.$store.dispatch("threads/request", { page: 1, ...this.$route.params });
-      } else if (this.$route.name === "board-thread-thread") {
-        window.scrollTo(0, 0);
-        await this.$store.dispatch("posts/clear");
-        await this.$store.dispatch("posts/request", { ...this.$route.params });
-      } else if (this.$route.name === "index") {
-        window.scrollTo(0, 0);
-        await this.$store.dispatch("boards/clear");
-        await this.$store.dispatch("boards/request");
-      }
-    },
-
     handleScroll() {
       const posY = window.pageYOffset || document.documentElement.scrollTop;
       const diff = Math.abs(posY - this.posY);
@@ -108,14 +95,13 @@ header img {
 
 header .brand {
   padding: 0 5px;
-  /* padding-bottom: 30px; */
   padding-bottom: 20px;
   font-weight: bold;
   font-size: 22px;
   display: flex;
   align-items: center;
-  margin-right: calc(100% / 10 - 15px);
-  margin-left: calc(100% / 10 - 15px);
+  margin-right: calc(100% / (4 * 2) - 15px);
+  margin-left: calc(100% / (4 * 2) - 15px);
 }
 
 header .brand img {

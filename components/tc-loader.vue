@@ -1,47 +1,96 @@
 <template>
-  <div class="tc-loader-container" :class="{ 'hidden': !show }">
-    <section>
-      <transition name="fade">
-        <img v-if="show" src="../assets/ic_autorenew_white_24px.svg" />
-      </transition>
-    </section>
-    <transition name="fade">
-      <div v-if="!show">
+  <section :class="{ 'hide-icon': !internalShow }">
+    <center>
+      <img src="../assets/ic_autorenew_white_24px.svg" />
+    </center>
+    <transition name="fade-out-instant">
+      <main v-if="!show">
         <slot></slot>
-      </div>
+      </main>
     </transition>
-  </div>
+  </section>
 </template>
 
 <script>
-export default { props: ["show"] };
+import Refresh from "@/mixins/refresh";
+import DownIcon from "@/assets/ic_arrow_downward_white_24px.svg";
+import UpIcon from "@/assets/ic_arrow_upward_white_24px.svg";
+import RefreshIcon from "@/assets/ic_autorenew_white_24px.svg";
+import { init as Pull } from "pulljs";
+
+export default {
+  props: ["show"],
+
+  mixins: [Refresh],
+
+  watch: {
+    show(value) {
+      if (!value && this.internalShow) {
+        this.internalShow = false;
+      }
+    }
+  },
+
+  data() {
+    return { internalShow: this.show };
+  },
+
+  mounted() {
+    Pull({
+      mainElement: this.$el,
+      onRefresh: () => this.handleRefresh(),
+      instructionsPullToRefresh: `<img src="${DownIcon}" />`,
+      instructionsReleaseToRefresh: `<img src="${UpIcon}" />`,
+      instructionsRefreshing: `<img class="spin" src="${RefreshIcon}" />`
+    });
+  }
+};
 </script>
 
 <style scoped>
-.tc-loader-container {
+center {
+  padding-top: 15px;
   transition-duration: 400ms;
 }
-
-.tc-loader-container.hidden {
-  margin-top: -100px;
-  /* transform: translateY(-100px); */
+.hide-list main {
+  opacity: 0;
 }
 
-.tc-loader-container > section {
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition-duration: 400ms;
-}
-
-.tc-loader-container.hidden > section {
-  /* margin-top: -100px; */
-}
-
-.tc-loader-container > section img {
-  width: 30px;
+center img {
+  width: 30px !important;
   animation: Spin 2s infinite linear;
+}
+
+.hide-icon center {
+  margin-top: calc(-34px + -15px);
+  animation-name: Out;
+  animation-fill-mode: forwards;
+  animation-delay: 400ms;
+}
+</style>
+
+<style>
+.ptr--ptr {
+  background-color: transparent !important;
+}
+
+.ptr--ptr img {
+  width: 30px !important;
+}
+
+.ptr--ptr img.spin {
+  animation: Spin 2s infinite linear;
+}
+
+.ptr--ptr .ptr--box {
+  padding-bottom: 0;
+}
+
+.ptr--ptr .ptr--text {
+  display: flex;
+  height: 45px;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 @keyframes Spin {
@@ -50,6 +99,15 @@ export default { props: ["show"] };
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes Out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 </style>
