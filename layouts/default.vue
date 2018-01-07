@@ -4,12 +4,14 @@
     <div class="page-container">
       <nuxt/>
     </div>
+    <fullscreen-image />
   </div>
 </template>
 
 <script>
 import TcHeader from "@/components/tc-header";
-export default { components: { TcHeader } };
+import FullscreenImage from "@/components/fullscreen-image";
+export default { components: { TcHeader, FullscreenImage } };
 </script>
 
 <style>

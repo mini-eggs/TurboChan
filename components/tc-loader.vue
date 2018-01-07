@@ -13,7 +13,7 @@
 
 <script>
 import Refresh from "@/mixins/refresh";
-import DownIcon from "@/assets/ic_arrow_downward_white_24px.svg";
+import DownIcon from "@/assets/ic_arrow_downward_white_24dp_2x.png";
 import UpIcon from "@/assets/ic_arrow_upward_white_24px.svg";
 import RefreshIcon from "@/assets/ic_autorenew_white_24px.svg";
 import { init as Pull } from "pulljs";
@@ -83,7 +83,7 @@ center img {
 }
 
 .ptr--ptr .ptr--box {
-  padding-bottom: 0;
+  padding-bottom: 5px;
 }
 
 .ptr--ptr .ptr--text {

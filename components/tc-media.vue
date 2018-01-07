@@ -15,12 +15,15 @@
 </template>
 
 <script>
+import EventBus from "@/mixins/bus";
 import SimpleImage from "@/vue-simple-image";
 
 export default {
   props: ["item", "alwaysLarge"],
 
   components: { SimpleImage },
+
+  mixins: [EventBus],
 
   data() {
     const board = this.$route.params.board;
@@ -58,18 +61,25 @@ export default {
     },
 
     makeLarge() {
-      if (!(this.alwaysLarge && this.isImage)) {
-        const container = this.$el.parentElement.parentElement.offsetWidth - 10;
-        this.$el.parentElement.style.width = "100%";
-        this.mode = "large";
-      }
+      this.openLarge();
+      // if (!(this.alwaysLarge && this.isImage)) {
+      //   const container = this.$el.parentElement.parentElement.offsetWidth - 10;
+      //   this.$el.parentElement.style.width = "100%";
+      //   this.mode = "large";
+      // }
     },
 
     makeSmall() {
-      if (!(this.alwaysLarge && this.isImage)) {
-        this.$el.parentElement.style.width = "";
-        this.mode = "small";
-      }
+      this.openLarge();
+      // if (!(this.alwaysLarge && this.isImage)) {
+      //   this.$el.parentElement.style.width = "";
+      //   this.mode = "small";
+      // }
+    },
+
+    openLarge() {
+      const { large, small } = this;
+      this.$bus.$emit("image:show", { large, small });
     }
   }
 };
