@@ -94,15 +94,6 @@ center img {
   justify-content: center;
 }
 
-@keyframes Spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes Out {
   from {
     opacity: 1;

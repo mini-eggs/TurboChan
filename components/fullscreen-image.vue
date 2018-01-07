@@ -1,7 +1,10 @@
 <template>
   <section class="fullscreen-image" v-if="show">
-    <simple-image class="media" :src="small" />
-    <simple-image class="media" :src="large" />
+    <template v-if="loading">
+      <img class="loading" src="../assets/ic_autorenew_white_24px.svg" />
+    </template>
+    <simple-image class="media" :src="small" :onComplete="handleComplete" :onFail="handleFail" />
+    <simple-image class="media" :src="large" :onComplete="handleComplete" :onFail="handleFail" />
     <img @click="handleClose" class="close" src="../assets/ic_close_white_24px.svg" />
   </section>
 </template>
@@ -14,7 +17,8 @@ import EventBus from "@/mixins/bus";
 const initialState = {
   large: null,
   small: null,
-  show: false
+  show: false,
+  loading: true
 };
 
 export default {
@@ -38,6 +42,12 @@ export default {
     handleClose() {
       EnableScroll();
       Object.assign(this.$data, initialState);
+    },
+    handleComplete() {
+      this.loading = false;
+    },
+    handleFail() {
+      this.handleClose();
     }
   }
 };
@@ -73,8 +83,19 @@ export default {
 
 .fullscreen-image img.close {
   width: 30px;
+  cursor: pointer;
   position: absolute;
   top: 15px;
   left: calc(100% / (4 * 2) - 15px);
+}
+
+.fullscreen-image img.loading {
+  width: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -15px;
+  animation: Spin 2s infinite linear;
 }
 </style>
