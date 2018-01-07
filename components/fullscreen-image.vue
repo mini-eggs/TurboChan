@@ -1,8 +1,6 @@
 <template>
   <section class="fullscreen-image" v-if="show">
-    <template v-if="loading">
-      <img class="loading" src="../assets/ic_autorenew_white_24px.svg" />
-    </template>
+    <img v-if="loading" class="loading" src="../assets/ic_autorenew_white_24px.svg" />
     <simple-image class="media" :src="small" :onComplete="handleComplete" :onFail="handleFail" />
     <simple-image class="media" :src="large" :onComplete="handleComplete" :onFail="handleFail" />
     <img @click="handleClose" class="close" src="../assets/ic_close_white_24px.svg" />
