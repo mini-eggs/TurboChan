@@ -1,11 +1,13 @@
 <template>
   <section class="fullscreen-image" v-if="show">
-    <img class="media" :src="large" :style="{ backgroundImage: `url(${small})` }" />
+    <simple-image class="media" :src="small" />
+    <simple-image class="media" :src="large" />
     <img @click="handleClose" class="close" src="../assets/ic_close_white_24px.svg" />
   </section>
 </template>
 
 <script>
+import SimpleImage from "@/vue-simple-image";
 import { on as DisableScroll, off as EnableScroll } from "no-scroll";
 import EventBus from "@/mixins/bus";
 
@@ -19,6 +21,8 @@ export default {
   mixins: [EventBus],
 
   data: () => ({ ...initialState }),
+
+  components: { SimpleImage },
 
   mounted() {
     this.$bus.$on("image:show", this.open);
@@ -39,16 +43,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .fullscreen-image {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 11;
   background-color: #343442;
 }
@@ -58,6 +59,10 @@ export default {
 }
 
 .fullscreen-image img.media {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
   height: calc(100% - 60px * 2);
   object-fit: contain;

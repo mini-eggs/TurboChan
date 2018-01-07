@@ -38,6 +38,7 @@ export default {
   mounted() {
     Pull({
       mainElement: this.$el,
+      triggerElement: document.body,
       onRefresh: () => this.handleRefresh(),
       instructionsPullToRefresh: `<img src="${DownIcon}" />`,
       instructionsReleaseToRefresh: `<img src="${UpIcon}" />`,
