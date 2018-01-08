@@ -81,8 +81,10 @@ export default {
     },
 
     openLarge() {
+      const el = this.$el.querySelector("img");
+      const currentSrc = el.getAttribute("src");
       const { large, small, isImage } = this;
-      this.$bus.$emit("image:show", { large, small, isImage });
+      this.$bus.$emit("image:show", { large, small, isImage, currentSrc });
     }
   }
 };

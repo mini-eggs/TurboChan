@@ -27,6 +27,7 @@ export default {
     show(value) {
       if (!value && this.internalShow) {
         this.internalShow = false;
+        this.initPullToRefresh();
       }
     }
   },
@@ -35,15 +36,17 @@ export default {
     return { internalShow: this.show };
   },
 
-  mounted() {
-    Pull({
-      mainElement: this.$el,
-      triggerElement: document.body,
-      onRefresh: () => this.handleRefresh(),
-      instructionsPullToRefresh: `<img src="${DownIcon}" />`,
-      instructionsReleaseToRefresh: `<img src="${UpIcon}" />`,
-      instructionsRefreshing: `<img class="spin" src="${RefreshIcon}" />`
-    });
+  methods: {
+    initPullToRefresh() {
+      Pull({
+        mainElement: this.$el,
+        triggerElement: document.body,
+        onRefresh: () => this.handleRefresh(),
+        instructionsPullToRefresh: `<img src="${DownIcon}" />`,
+        instructionsReleaseToRefresh: `<img src="${UpIcon}" />`,
+        instructionsRefreshing: `<img class="spin" src="${RefreshIcon}" />`
+      });
+    }
   }
 };
 </script>

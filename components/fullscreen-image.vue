@@ -37,11 +37,12 @@ export default {
   },
 
   methods: {
-    open({ large, small, isImage }) {
+    open({ large, small, isImage, currentSrc }) {
       DisableScroll();
       this.isImage = isImage;
       this.large = large;
-      this.small = small;
+      // this.small = small;
+      this.small = currentSrc;
       this.show = true;
     },
     handleClose() {
