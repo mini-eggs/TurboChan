@@ -1,8 +1,13 @@
 <template>
   <section class="fullscreen-image" v-if="show">
     <img v-if="loading" class="loading" src="../assets/ic_autorenew_white_24px.svg" />
-    <simple-image class="media" :src="small" :onComplete="handleComplete" :onFail="handleFail" />
-    <simple-image class="media" :src="large" :onComplete="handleComplete" :onFail="handleFail" />
+    <template v-if="isImage">
+      <simple-image class="media" :src="small" :onComplete="handleComplete" :onFail="handleFail" />
+      <simple-image class="media" :src="large" :onComplete="handleComplete" :onFail="handleFail" />
+    </template>
+    <video v-else class="media" autoplay loop controls :poster="small">
+      <source :src="large" type="video/webm">
+    </video>
     <img @click="handleClose" class="close" src="../assets/ic_close_white_24px.svg" />
   </section>
 </template>
@@ -16,7 +21,8 @@ const initialState = {
   large: null,
   small: null,
   show: false,
-  loading: true
+  loading: true,
+  isImage: true
 };
 
 export default {
@@ -31,8 +37,9 @@ export default {
   },
 
   methods: {
-    open({ large, small }) {
+    open({ large, small, isImage }) {
       DisableScroll();
+      this.isImage = isImage;
       this.large = large;
       this.small = small;
       this.show = true;
@@ -66,6 +73,7 @@ export default {
   vertical-align: middle;
 }
 
+.fullscreen-image video.media,
 .fullscreen-image img.media {
   position: absolute;
   top: 50%;

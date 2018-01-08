@@ -7,8 +7,10 @@
     </div>
     <div @click="makeSmall" v-else>
       <transition name="fade">
+        <simple-image :src="large" />
+        <!-- These aren't going to be used anymore since we now use fullscreen-image
         <simple-image v-if="isImage" :src="large" />
-        <video v-else autoplay loop :src="large"/>
+        <video v-else autoplay loop :src="large"/> -->
       </transition>
     </div>
   </div>
@@ -78,8 +80,8 @@ export default {
     },
 
     openLarge() {
-      const { large, small } = this;
-      this.$bus.$emit("image:show", { large, small });
+      const { large, small, isImage } = this;
+      this.$bus.$emit("image:show", { large, small, isImage });
     }
   }
 };
