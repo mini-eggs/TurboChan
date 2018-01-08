@@ -34,7 +34,8 @@ export default {
     const small = `/api/media/${board}/${tim}s.jpg`;
     const isImage = [".gif", ".jpg", ".jpeg", ".png"].includes(ext);
     const height = "auto";
-    const mode = this.alwaysLarge && isImage ? "large" : "small";
+    // const mode = this.alwaysLarge && isImage ? "large" : "small";
+    const mode = "small";
     return { height, large, small, mode, isImage };
   },
 

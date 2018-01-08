@@ -3,12 +3,15 @@
     <div class="title">
       <div><strong>{{ post.name }}</strong></div> <div>{{ post.now }}</div>
     </div>
-    <div class="media" v-if="post.ext">
-      <tc-media :alwaysLarge="true" :item="post" />
+    <div>
+      <div class="media" v-if="post.ext">
+        <tc-media :alwaysLarge="true" :item="post" />
+      </div>
+      <!-- <div class="content"> -->
+        <tc-content :item="post"/>
+      <!-- </div> -->
     </div>
-    <div class="content">
-      <tc-content :item="post"/>
-    </div>  
+    <div style="clear: both;"></div>
     <div class="actions" v-if="!hideActions">
       <div>
         <nuxt-link :to="href">
@@ -68,7 +71,10 @@ export default {
 }
 
 .media {
-  margin: 15px 0;
+  /* margin: 15px 0; */
+  width: 35%;
+  float: left;
+  margin: 0 15px 15px 0;
 }
 
 .content {
