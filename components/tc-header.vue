@@ -46,6 +46,7 @@ export default {
 
   methods: {
     handleScroll() {
+      if (document.querySelector("html").style.overflow !== "") return;
       const posY = window.pageYOffset || document.documentElement.scrollTop;
       const diff = Math.abs(posY - this.posY);
       this.displayBrand = !(posY > 50);

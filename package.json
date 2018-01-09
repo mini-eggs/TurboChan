@@ -20,6 +20,7 @@
     "express": "^4.16.2",
     "no-scroll": "^2.1.0",
     "nuxt": "^1.0.0-rc11",
-    "pulljs": "^0.1.2"
+    "pulljs": "^0.1.2",
+    "stream-transcoder": "0.0.5"
   }
 }

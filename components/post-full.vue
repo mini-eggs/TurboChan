@@ -8,7 +8,9 @@
         <tc-media :alwaysLarge="true" :item="post" />
       </div>
       <!-- <div class="content"> -->
-        <tc-content :item="post"/>
+        <tc-content :item="post">
+          <div style="height: 15px;"></div>
+        </tc-content>
       <!-- </div> -->
     </div>
     <div style="clear: both;"></div>
@@ -82,7 +84,8 @@ export default {
 }
 
 .actions {
-  margin: 15px 0 5px;
+  /* margin: 15px 0 5px; */
+  margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
 }

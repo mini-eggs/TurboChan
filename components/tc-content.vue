@@ -1,5 +1,5 @@
 <template>
-  <p :id="item.no" v-html="desc"></p>
+  <p :id="item.no"><span v-html="desc"></span><slot></slot></p>
 </template>
 
 <script>

@@ -124,7 +124,7 @@ app.use(__WEBPACK_IMPORTED_MODULE_2_compression___default()());
 app.use("/api", __WEBPACK_IMPORTED_MODULE_5__api__["a" /* default */]);
 app.use(nuxt.render);
 app.listen(port, function () {
-  return console.log("\nServer has started on port" + port + ".\n");
+  return console.log("\nServer has started on port " + port + ".\n");
 });
 
 /***/ }),
@@ -365,13 +365,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
+// import FS from "fs";
+// import Path from "path";
+// import Transcoder from "stream-transcoder";
 
 var router = Object(__WEBPACK_IMPORTED_MODULE_1_express__["Router"])();
 
-var opts = {
-  method: "get",
-  responseType: "stream"
-};
+var opts = { method: "get", responseType: "stream" };
+
+// const transcode = s =>
+//   new Transcoder(s)
+//     .maxSize(320, 240)
+//     .videoCodec("h264")
+//     .videoBitrate(800 * 1000)
+//     .fps(25)
+//     .sampleRate(44100)
+//     .channels(2)
+//     .audioBitrate(128 * 1000)
+//     .format("mp4")
+//     .custom("strict", "experimental")
+//     .stream();
 
 router.get("/media/:thread/:media", function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(req, res) {
@@ -388,6 +401,27 @@ router.get("/media/:thread/:media", function () {
               var data = _ref2.data;
               return data.pipe(res);
             });
+            // Not feasible for RPI + This method is slow (creating + deleting files)
+            // const { thread, media } = req.params;
+            // const convert = media.indexOf(".mp4") !== -1;
+            // const url = `http://i.4cdn.org/${thread}/${media}`.replace(".mp4", ".webm");
+            // const getStream = convert
+            //   ? ({ data }) => transcode(data)
+            //   : ({ data }) => data;
+            // Axios({ ...opts, url: url }).then(i => {
+            //   const stream = getStream(i);
+            //   if (!convert || true) {
+            //     stream.pipe(res);
+            //     return;
+            //   }
+            //   const name = `${media}_${new Date().getTime()}`;
+            //   const loc = Path.join(__dirname, `../static/${name}`);
+            //   const file = FS.createWriteStream(loc);
+            //   stream.pipe(file).on("finish", () => {
+            //     res.sendFile(`${media}`, { root: __dirname + "/../static/" });
+            //     FS.unlink(loc, () => undefined);
+            //   });
+            // });
 
           case 3:
           case "end":

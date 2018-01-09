@@ -5,8 +5,9 @@
       <simple-image class="media" :src="small" :onComplete="handleComplete" :onFail="handleFail" />
       <simple-image class="media" :src="large" :onComplete="handleComplete" :onFail="handleFail" />
     </template>
-    <video v-else class="media" autoplay loop controls :poster="small">
+    <video v-else class="media" loop autoplay controls :poster="small">
       <source :src="large" type="video/webm">
+      <!-- <source :src="`${large.replace('.webm', '.mp4')}`" type="video/mp4"> -->
     </video>
     <img @click="handleClose" class="close" src="../assets/ic_close_white_24px.svg" />
   </section>
