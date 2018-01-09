@@ -1,4 +1,4 @@
-FROM node
+FROM jacobwgillespie/nodejs-ffmpeg
 
 WORKDIR /usr/src/app
 
