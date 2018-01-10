@@ -62,6 +62,8 @@ export default {
   background-color: rgba(0, 0, 0, 0.25);
   padding: 5px 15px;
   border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title {

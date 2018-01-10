@@ -7,8 +7,9 @@
         <simple-image class="media" :src="large" :onComplete="handleComplete" :onFail="handleImageFail" />
       </template>
       <video v-else class="media" loop autoplay controls :poster="small">
-        <source :src="large" type="video/webm">
-        <source :src="`${large.replace('.webm', '.mp4')}`" type="video/mp4" @error="handleVideoFailSafari">
+        <source :src="large" type="video/webm" @error="handleVideoFail">
+        <!-- <source :src="`${large.replace('.webm', '.mp4')}`" type="video/mp4" @error="handleVideoFail"> -->
+        <!-- Disabling for now -->
       </video>
       <img @click="handleClose" class="close" src="../assets/ic_close_white_24px.svg" />
     </div>
@@ -49,8 +50,10 @@ export default {
       this.show = true;
     },
 
-    handleVideoFailSafari() {
-      alert("Video has failed to load.");
+    handleVideoFail() {
+      alert(
+        "Video has failed to load. If you're on an Apple device it may be due to Apple's non-support for the webm video format."
+      );
       this.handleClose();
     },
 
