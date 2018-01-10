@@ -7,7 +7,7 @@
         <simple-image class="media" :src="large" :onComplete="handleComplete" :onFail="handleImageFail" />
       </template>
       <video v-else class="media" loop autoplay controls :poster="small">
-        <source :src="large" type="video/webm" @error="handleVideoFail">
+        <source :src="large" type="video/webm" @error.once="handleVideoFail">
         <!-- <source :src="`${large.replace('.webm', '.mp4')}`" type="video/mp4" @error="handleVideoFail"> -->
         <!-- Disabling for now -->
       </video>
