@@ -62,7 +62,7 @@ router.get("/media/:thread/:media", async (req, res) => {
       fileStream.on("error", onError);
       stream.pipe(fileStream).on("finish", whenExists);
     });
-  } catch (err) {
+  } catch (e) {
     onError(e);
   }
 });
