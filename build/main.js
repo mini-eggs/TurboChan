@@ -357,6 +357,12 @@ router.get("/:board/thread/:thread", function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_path__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_path__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_stream_transcoder__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_stream_transcoder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_stream_transcoder__);
 
 
 var _this = this;
@@ -365,65 +371,66 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
-// import FS from "fs";
-// import Path from "path";
-// import Transcoder from "stream-transcoder";
+
+
+
 
 var router = Object(__WEBPACK_IMPORTED_MODULE_1_express__["Router"])();
 
 var opts = { method: "get", responseType: "stream" };
 
-// const transcode = s =>
-//   new Transcoder(s)
-//     .maxSize(320, 240)
-//     .videoCodec("h264")
-//     .videoBitrate(800 * 1000)
-//     .fps(25)
-//     .sampleRate(44100)
-//     .channels(2)
-//     .audioBitrate(128 * 1000)
-//     .format("mp4")
-//     .custom("strict", "experimental")
-//     .stream();
+var transcode = function transcode(s) {
+  return new __WEBPACK_IMPORTED_MODULE_5_stream_transcoder___default.a(s).maxSize(320 / 2, 240 / 2).videoCodec("h264").videoBitrate(800 * 1000).fps(20).sampleRate(44100).channels(2).audioBitrate(128 * 1000).format("mp4").custom("strict", "experimental").stream();
+};
 
 router.get("/media/:thread/:media", function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(req, res) {
-    var _req$params, thread, media, url;
+    var _req$params, thread, media, convert, url, getStream;
 
     return __WEBPACK_IMPORTED_MODULE_0__home_evan_Projects_TurboChan_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _req$params = req.params, thread = _req$params.thread, media = _req$params.media;
-            url = "http://i.4cdn.org/" + thread + "/" + media;
-
-            __WEBPACK_IMPORTED_MODULE_2_axios___default()(Object.assign({}, opts, { url: url })).then(function (_ref2) {
+            convert = media.indexOf(".mp4") !== -1;
+            url = ("http://i.4cdn.org/" + thread + "/" + media).replace(".mp4", ".webm");
+            getStream = convert ? function (_ref2) {
               var data = _ref2.data;
-              return data.pipe(res);
-            });
-            // Not feasible for RPI + This method is slow (creating + deleting files)
-            // const { thread, media } = req.params;
-            // const convert = media.indexOf(".mp4") !== -1;
-            // const url = `http://i.4cdn.org/${thread}/${media}`.replace(".mp4", ".webm");
-            // const getStream = convert
-            //   ? ({ data }) => transcode(data)
-            //   : ({ data }) => data;
-            // Axios({ ...opts, url: url }).then(i => {
-            //   const stream = getStream(i);
-            //   if (!convert || true) {
-            //     stream.pipe(res);
-            //     return;
-            //   }
-            //   const name = `${media}_${new Date().getTime()}`;
-            //   const loc = Path.join(__dirname, `../static/${name}`);
-            //   const file = FS.createWriteStream(loc);
-            //   stream.pipe(file).on("finish", () => {
-            //     res.sendFile(`${media}`, { root: __dirname + "/../static/" });
-            //     FS.unlink(loc, () => undefined);
-            //   });
-            // });
+              return transcode(data);
+            } : function (_ref3) {
+              var data = _ref3.data;
+              return data;
+            };
 
-          case 3:
+
+            __WEBPACK_IMPORTED_MODULE_2_axios___default()(Object.assign({}, opts, { url: url })).then(function (i) {
+              var stream = getStream(i);
+
+              if (!convert) {
+                stream.pipe(res);
+                return;
+              }
+
+              /**
+               * This method isn't great. But sending file works
+               * great for Safari + Safari mobile.
+               */
+              var loc = "/tmp/" + media;
+              var whenExists = function whenExists() {
+                return res.sendFile("" + media, { root: "/tmp/" });
+              };
+
+              __WEBPACK_IMPORTED_MODULE_3_fs___default.a.exists(loc, function (exists) {
+                if (exists) {
+                  whenExists();
+                  return;
+                }
+
+                stream.pipe(__WEBPACK_IMPORTED_MODULE_3_fs___default.a.createWriteStream(loc)).on("finish", whenExists);
+              });
+            });
+
+          case 5:
           case "end":
             return _context.stop();
         }
@@ -437,6 +444,24 @@ router.get("/media/:thread/:media", function () {
 }());
 
 /* harmony default export */ __webpack_exports__["a"] = (router);
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = require("stream-transcoder");
 
 /***/ })
 /******/ ]);
