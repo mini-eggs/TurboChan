@@ -1,15 +1,17 @@
 <template>
   <section class="fullscreen-image" v-if="show">
-    <img v-if="loading" class="loading" src="../assets/ic_autorenew_white_24px.svg" />
-    <template v-if="isImage">
-      <simple-image class="media" :src="small" :onComplete="handleComplete" :onFail="handleFail" />
-      <simple-image class="media" :src="large" :onComplete="handleComplete" :onFail="handleFail" />
-    </template>
-    <video v-else class="media" loop autoplay controls :poster="small">
-      <source :src="large" type="video/webm">
-      <source :src="`${large.replace('.webm', '.mp4')}`" type="video/mp4">
-    </video>
-    <img @click="handleClose" class="close" src="../assets/ic_close_white_24px.svg" />
+    <div>
+      <img v-if="loading" class="loading" src="../assets/ic_autorenew_white_24px.svg" />
+      <template v-if="isImage">
+        <simple-image class="media" :src="small" :onComplete="handleComplete" :onFail="handleImageFail" />
+        <simple-image class="media" :src="large" :onComplete="handleComplete" :onFail="handleImageFail" />
+      </template>
+      <video v-else class="media" loop autoplay controls :poster="small">
+        <source :src="large" type="video/webm" @error="handleVideoFail">
+        <source :src="`${large.replace('.webm', '.mp4')}`" type="video/mp4" @error="handleVideoFail">
+      </video>
+      <img @click="handleClose" class="close" src="../assets/ic_close_white_24px.svg" />
+    </div>
   </section>
 </template>
 
@@ -46,14 +48,22 @@ export default {
       this.small = currentSrc;
       this.show = true;
     },
+
+    handleVideoFail() {
+      alert("Video has failed to load.");
+      this.handleClose();
+    },
+
     handleClose() {
       EnableScroll();
       Object.assign(this.$data, initialState);
     },
+
     handleComplete() {
       this.loading = false;
     },
-    handleFail() {
+
+    handleImageFail() {
       this.handleClose();
     }
   }
@@ -69,6 +79,16 @@ export default {
   height: 100%;
   z-index: 11;
   background-color: #343442;
+}
+
+.fullscreen-image > div {
+  max-width: 600px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .fullscreen-image img {

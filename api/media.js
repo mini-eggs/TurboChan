@@ -30,8 +30,15 @@ router.get("/media/:thread/:media", async (req, res) => {
     ? ({ data }) => transcode(data)
     : ({ data }) => data;
 
-  Axios({ ...opts, url }).then(i => {
-    const stream = getStream(i);
+  const onError = e => {
+    console.log("Error requesting item from external server.");
+    console.log(e);
+    res.status(404).send();
+  };
+
+  try {
+    const stream = getStream(await Axios({ ...opts, url }));
+    stream.on("error", onError);
 
     if (!convert) {
       stream.pipe(res);
@@ -40,7 +47,7 @@ router.get("/media/:thread/:media", async (req, res) => {
 
     /**
      * This method isn't great. But sending file works
-     * great for Safari + Safari mobile.
+     * for Safari + Safari mobile.
      */
     const loc = `/tmp/${media}`;
     const whenExists = () => res.sendFile(`${media}`, { root: "/tmp/" });
@@ -51,9 +58,13 @@ router.get("/media/:thread/:media", async (req, res) => {
         return;
       }
 
-      stream.pipe(FS.createWriteStream(loc)).on("finish", whenExists);
+      const fileStream = FS.createWriteStream(loc);
+      fileStream.on("error", onError);
+      stream.pipe(fileStream).on("finish", whenExists);
     });
-  });
+  } catch (err) {
+    onError(e);
+  }
 });
 
 export default router;
