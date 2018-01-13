@@ -21,6 +21,8 @@
     "no-scroll": "^2.1.0",
     "nuxt": "^1.0.0-rc11",
     "pulljs": "^0.1.2",
-    "stream-transcoder": "0.0.5"
+    "stream-transcoder": "0.0.5",
+    "ts-loader": "^3.2.0",
+    "typescript": "^2.6.2"
   }
 }
