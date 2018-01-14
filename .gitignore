@@ -2,6 +2,7 @@
 node_modules
 vue-simple-image
 build
+.nuxt
 
 # logs
 npm-debug.log
