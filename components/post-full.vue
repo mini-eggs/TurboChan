@@ -11,11 +11,9 @@
       <div class="media" v-if="post.ext">
         <tc-media :alwaysLarge="true" :item="post" />
       </div>
-      <!-- <div class="content"> -->
-        <tc-content :item="post">
-          <div style="height: 15px;"></div>
-        </tc-content>
-      <!-- </div> -->
+      <tc-content :item="post">
+        <div style="height: 15px;"></div>
+      </tc-content>
     </div>
     <div style="clear: both;"></div>
     <div class="actions" v-if="!hideActions">

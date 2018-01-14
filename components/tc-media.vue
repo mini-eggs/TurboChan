@@ -8,9 +8,6 @@
     <div @click="makeSmall" v-else>
       <transition name="fade">
         <simple-image :src="large" />
-        <!-- These aren't going to be used anymore since we now use fullscreen-image
-        <simple-image v-if="isImage" :src="large" />
-        <video v-else autoplay loop :src="large"/> -->
       </transition>
     </div>
   </div>
@@ -29,12 +26,10 @@ export default {
 
   data() {
     const board = this.$route.params.board;
-    const { w, h, tn_w, tn_h, tim, ext } = this.item;
-    const large = `/api/media/${board}/${tim}${ext}`;
-    const small = `/api/media/${board}/${tim}s.jpg`;
-    const isImage = [".gif", ".jpg", ".jpeg", ".png"].includes(ext);
+    const { w, h, tn_w, tn_h, tim, ext, isImage } = this.item;
+    const large = this.item.image_large;
+    const small = this.item.image_small;
     const height = "auto";
-    // const mode = this.alwaysLarge && isImage ? "large" : "small";
     const mode = "small";
     return { height, large, small, mode, isImage };
   },
@@ -65,26 +60,14 @@ export default {
 
     makeLarge() {
       this.openLarge();
-      // if (!(this.alwaysLarge && this.isImage)) {
-      //   const container = this.$el.parentElement.parentElement.offsetWidth - 10;
-      //   this.$el.parentElement.style.width = "100%";
-      //   this.mode = "large";
-      // }
     },
 
     makeSmall() {
       this.openLarge();
-      // if (!(this.alwaysLarge && this.isImage)) {
-      //   this.$el.parentElement.style.width = "";
-      //   this.mode = "small";
-      // }
     },
 
     openLarge() {
-      const el = this.$el.querySelector("img");
-      const currentSrc = el.getAttribute("src");
-      const { large, small, isImage } = this;
-      this.$bus.$emit("image:show", { large, small, isImage, currentSrc });
+      this.$bus.$emit("image:show", this.item);
     }
   }
 };

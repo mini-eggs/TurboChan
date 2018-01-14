@@ -1,14 +1,14 @@
 import Request from "../constants/request";
 import { IStore, IActions, IMutations } from "./types";
 
-interface IState {
-  list: Array<any>;
-}
-
 type TPost = any;
 
+interface IState {
+  list: Array<TPost>;
+}
+
 interface IReceivedPostData {
-  posts: Array<any>;
+  posts: Array<TPost>;
 }
 
 interface IRequestPostProps {
@@ -16,10 +16,18 @@ interface IRequestPostProps {
   thread: String;
 }
 
-const format = (data: IReceivedPostData): IReceivedPostData => ({
-  posts: data.posts.map((i: TPost) => ({
+interface IFormatRequest {
+  data: IReceivedPostData;
+  props: IRequestPostProps;
+}
+
+const format = (res: IFormatRequest): IReceivedPostData => ({
+  posts: res.data.posts.map((i: TPost) => ({
     ...i,
-    replies: data.posts
+    image_large: `/api/media/${res.props.board}/${i.tim}${i.ext}`,
+    image_small: `/api/media/${res.props.board}/${i.tim}s.jpg`,
+    isImage: [".gif", ".jpg", ".jpeg", ".png"].includes(i.ext),
+    replies: res.data.posts
       .filter((x: TPost): Boolean => (x.com || "").indexOf(`#p${i.no}`) !== -1)
       .map((x: TPost): Number => x.no)
   }))
@@ -41,7 +49,7 @@ const actions: IActions = {
   async request(store: IStore, props: IRequestPostProps): Promise<void> {
     store.commit(mutations.empty.name);
     const res = await Request(`/api/${props.board}/thread/${props.thread}`);
-    store.commit(mutations.received.name, format(res.data));
+    store.commit(mutations.received.name, format({ data: res.data, props }));
   },
 
   clear(store: IStore): void {

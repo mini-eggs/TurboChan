@@ -30,7 +30,10 @@ const format = (item: IFormatable): IReceivedThreadData => ({
     posts: t.posts.map((i: TPost) => ({
       ...i,
       board: item.board,
+      image_large: `/api/media/${item.board}/${i.tim}${i.ext}`,
+      image_small: `/api/media/${item.board}/${i.tim}s.jpg`,
       thread: [...t.posts].shift().no,
+      isImage: [".gif", ".jpg", ".jpeg", ".png"].includes(i.ext),
       replies: t.posts
         .filter(
           (x: TPost): Boolean => (x.com || "").indexOf(`#p${i.no}`) !== -1

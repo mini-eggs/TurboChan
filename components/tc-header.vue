@@ -5,7 +5,6 @@
         <header>
           <transition name="up-and-out">
             <nuxt-link to="/" v-if="displayBrand" class="brand">
-              <!-- <img src="../assets/logo_white.png" /> -->
               <span>Turbo Chan</span>
             </nuxt-link>
           </transition>
@@ -19,9 +18,6 @@
             <nuxt-link to="/search">
               <img src="../assets/ic_search_white_24px.svg"/>
             </nuxt-link>
-            <!-- <button @click="handleRefresh">
-              <img src="../assets/ic_autorenew_white_24px.svg" style="transform: rotate(45deg);"/>
-            </button> -->
             <nuxt-link to="/about">
               <img src="../assets/ic_settings_white_24px.svg"/>
             </nuxt-link>

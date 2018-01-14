@@ -23,6 +23,7 @@
     "pulljs": "^0.1.2",
     "stream-transcoder": "0.0.5",
     "ts-loader": "^3.2.0",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "vue-carousel": "^0.6.5"
   }
 }
