@@ -5,6 +5,8 @@ interface IState {
   list: Array<any>;
 }
 
+type TPost = any;
+
 interface IReceivedPostData {
   posts: Array<any>;
 }
@@ -13,6 +15,15 @@ interface IRequestPostProps {
   board: String;
   thread: String;
 }
+
+const format = (data: IReceivedPostData): IReceivedPostData => ({
+  posts: data.posts.map((i: TPost) => ({
+    ...i,
+    replies: data.posts
+      .filter((x: TPost): Boolean => (x.com || "").indexOf(`#p${i.no}`) !== -1)
+      .map((x: TPost): Number => x.no)
+  }))
+});
 
 const state = (): IState => ({ list: [] });
 
@@ -30,7 +41,7 @@ const actions: IActions = {
   async request(store: IStore, props: IRequestPostProps): Promise<void> {
     store.commit(mutations.empty.name);
     const res = await Request(`/api/${props.board}/thread/${props.thread}`);
-    store.commit(mutations.received.name, res.data);
+    store.commit(mutations.received.name, format(res.data));
   },
 
   clear(store: IStore): void {

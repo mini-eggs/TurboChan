@@ -30,7 +30,12 @@ const format = (item: IFormatable): IReceivedThreadData => ({
     posts: t.posts.map((i: TPost) => ({
       ...i,
       board: item.board,
-      thread: [...t.posts].shift()
+      thread: [...t.posts].shift().no,
+      replies: t.posts
+        .filter(
+          (x: TPost): Boolean => (x.com || "").indexOf(`#p${i.no}`) !== -1
+        )
+        .map((x: TPost): Number => x.no)
     }))
   }))
 });

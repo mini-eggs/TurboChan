@@ -3,6 +3,10 @@
     <div class="title">
       <div><strong>{{ post.name }}</strong></div> <div>{{ post.now }}</div>
     </div>
+    <div class="header">
+      <strong>{{ post.no }} </strong>
+      <a @click="handleClick" :href="`#p${reply}`" v-for="reply in post.replies" :key="reply">>>{{ reply }} </a>
+    </div>
     <div>
       <div class="media" v-if="post.ext">
         <tc-media :alwaysLarge="true" :item="post" />
@@ -35,9 +39,12 @@
 <script>
 import TcMedia from "./tc-media";
 import TcContent from "./tc-content";
+import QuoteMixin from "@/mixins/quote";
 
 export default {
   components: { TcMedia, TcContent },
+
+  mixins: [QuoteMixin],
 
   props: ["post", "hideActions"],
 
@@ -47,6 +54,16 @@ export default {
       const thread = this.post.no;
       return `/${board}/thread/${thread}`;
     }
+  },
+
+  watch: {
+    post(value) {
+      this.item = value;
+    }
+  },
+
+  data() {
+    return { item: this.post };
   }
 };
 </script>
@@ -71,6 +88,10 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.header {
   margin-bottom: 15px;
 }
 
