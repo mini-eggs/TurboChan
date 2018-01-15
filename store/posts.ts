@@ -24,6 +24,8 @@ interface IFormatRequest {
 const format = (res: IFormatRequest): IReceivedPostData => ({
   posts: res.data.posts.map((i: TPost) => ({
     ...i,
+    replyCount: i.replies || 0,
+    imageCount: i.images || 0,
     image_large: `/api/media/${res.props.board}/${i.tim}${i.ext}`,
     image_small: `/api/media/${res.props.board}/${i.tim}s.jpg`,
     isImage: [".gif", ".jpg", ".jpeg", ".png"].includes(i.ext),

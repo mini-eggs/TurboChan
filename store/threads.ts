@@ -29,6 +29,8 @@ const format = (item: IFormatable): IReceivedThreadData => ({
   threads: item.threads.map((t: IThread) => ({
     posts: t.posts.map((i: TPost) => ({
       ...i,
+      replyCount: i.replies || 0,
+      imageCount: i.images || 0,
       board: item.board,
       image_large: `/api/media/${item.board}/${i.tim}${i.ext}`,
       image_small: `/api/media/${item.board}/${i.tim}s.jpg`,

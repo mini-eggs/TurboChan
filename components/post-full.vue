@@ -20,11 +20,11 @@
       <div>
         <nuxt-link :to="href">
           <img src="../assets/ic_comment_white_24px.svg" />
-          <span>{{ post.replies }}</span>
+          <span>{{ post.replyCount }}</span>
         </nuxt-link>
         <nuxt-link :to="href">
           <img src="../assets/ic_insert_photo_white_24px.svg" />
-          <span>{{ post.images }}</span>
+          <span>{{ post.imageCount }}</span>
         </nuxt-link>
       </div>
       <nuxt-link :to="href" class="reply">
